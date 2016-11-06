@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         final Fragment mapFragment = new MapFragment();
 
         mBottomBar = BottomBar.attach(this, savedInstanceState);
+        mBottomBar.setMaxFixedTabs(4);
         mBottomBar.setItems(R.menu.bottombar_menu);
         // Setting NavBar Style preferences
         mBottomBar.setActiveTabColor("#a40b07");//Color that all nav icons will adopt when selected
