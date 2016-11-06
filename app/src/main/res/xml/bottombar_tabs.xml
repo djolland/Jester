@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_deals"
+        icon="@drawable/ic_deals"
+        title="Deals"
+        barColorWhenSelected="#ed241e" />
+
+    <tab
+        id="@+id/tab_events"
+        icon="@drawable/ic_events"
+        title="Events"
+        barColorWhenSelected="#2f3d8f" />
+
+</tabs>

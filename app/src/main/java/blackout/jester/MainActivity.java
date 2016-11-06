@@ -2,6 +2,9 @@ package blackout.jester;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,26 +27,44 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Instantiating Fragments
+        final Fragment dealsFragment = new DealsFragment();
+        final Fragment eventsFragment = new EventsFragment();
+        /*
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new DealsFragment())
+                    .add(R.id.container, dealsFragment)
                     .commit();
         }
+        */
+        //Attempt to use tabs instead of menu items:
+        //mBottomBar = (BottomBar) findViewById(R.id.bottomBar);
 
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.setItems(R.menu.bottombar_menu);
+        // Setting NavBar Style preferences
+        mBottomBar.setActiveTabColor("#a40b07");//Color that all nav icons will adopt when selected
+
+
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
                 if (menuItemId == R.id.bb_menu_deals) {
-
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, dealsFragment)
+                            .commit();
+                }
+                else if (menuItemId == R.id.bb_menu_events) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, eventsFragment)
+                            .commit();
                 }
             }
 
             @Override
             public void onMenuTabReSelected(@IdRes int menuItemId) {
-                if (menuItemId == R.id.bb_menu_events) {
-                    // The user reselected the "Recents" tab. React accordingly.
+                if (menuItemId == R.id.bb_menu_deals) {
+                    // Do Nothing I guess
                 }
             }
         });
@@ -62,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState){
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.deals_layout, container, false);
 
             String[] dealData = {
@@ -94,6 +115,47 @@ public class MainActivity extends AppCompatActivity {
 
             return rootView;
         }
+    }
 
+    public static class EventsFragment extends Fragment {
+
+        private ArrayAdapter<String> mEventsAdapter;
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.events_layout, container, false);
+
+            String[] eventData = {
+                    "DJ Sumptin - 8:00PM - No Cover",
+                    "Lady Gaga - 7:00PM - $100 Cover",
+                    "PERFORMER - TIME - PRICE",
+                    "PERFORMER - TIME - PRICE",
+                    "PERFORMER - TIME - PRICE",
+                    "PERFORMER - TIME - PRICE",
+                    "PERFORMER - TIME - PRICE",
+                    "PERFORMER - TIME - PRICE",
+            };
+
+            ArrayList<String> eventsList = new ArrayList<>(Arrays.asList(eventData));
+
+            mEventsAdapter = new ArrayAdapter<String>(
+                    getActivity(),
+                    R.layout.events_textview,
+                    R.id.list_item_event,
+                    eventsList
+            );
+
+            ListView eventListView = (ListView) rootView.findViewById(
+                    R.id.listview_events);
+            eventListView.setAdapter(mEventsAdapter);
+
+            return rootView;
+        }
+
+        @Override
+        public void onPause(){
+            super.onPause();
+        }
     }
 }
