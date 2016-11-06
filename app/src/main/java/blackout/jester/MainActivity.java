@@ -30,21 +30,12 @@ public class MainActivity extends AppCompatActivity {
         // Instantiating Fragments
         final Fragment dealsFragment = new DealsFragment();
         final Fragment eventsFragment = new EventsFragment();
-        /*
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, dealsFragment)
-                    .commit();
-        }
-        */
-        //Attempt to use tabs instead of menu items:
-        //mBottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        final Fragment mapFragment = new MapFragment();
 
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.setItems(R.menu.bottombar_menu);
         // Setting NavBar Style preferences
         mBottomBar.setActiveTabColor("#a40b07");//Color that all nav icons will adopt when selected
-
 
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
@@ -57,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
                 else if (menuItemId == R.id.bb_menu_events) {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, eventsFragment)
+                            .commit();
+                }
+                else if (menuItemId == R.id.bb_menu_map) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, mapFragment)
                             .commit();
                 }
             }
@@ -156,6 +152,45 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPause(){
             super.onPause();
+        }
+    }
+
+    public static class MapFragment extends Fragment {
+
+        private ArrayAdapter<String> mapListAdapter;
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            View rootView = inflater.inflate(R.layout.map_layout, container, false);
+
+
+            String[] barData = {
+                    "Social House - 5 Miles",
+                    "The Library - 5 Miles",
+                    "Single Speed - 7 Miles",
+                    "BAR - DISTANCE",
+                    "BAR - DISTANCE",
+                    "BAR - DISTANCE",
+                    "BAR - DISTANCE",
+                    "BAR - DISTANCE",
+            };
+
+            ArrayList<String> barList = new ArrayList<>(Arrays.asList(barData));
+
+            mapListAdapter = new ArrayAdapter<String>(
+                    this.getActivity(),
+                    R.layout.map_textview,
+                    R.id.list_item_map,
+                    barList
+            );
+
+            ListView mapListView = (ListView) rootView.findViewById(
+                    R.id.listview_map);
+            mapListView.setAdapter(mapListAdapter);
+
+            return rootView;
         }
     }
 }

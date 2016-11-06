@@ -8,4 +8,8 @@
         android:id="@+id/bb_menu_events"
         android:icon="@drawable/ic_events"
         android:title="Events" />
+    <item
+        android:id="@+id/bb_menu_map"
+        android:icon="@drawable/ic_map_grid"
+        android:title="Map" />
 </menu>
