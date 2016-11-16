@@ -1,34 +1,49 @@
 package blackout.jester;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomBar mBottomBar;
+    private ArrayList<DealListItem> dealListItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Generating deals list
+        Bundle dealsBundle = new Bundle();
+        DealListItem[] deals = {
+                new DealListItem("Bar Image","Bar Name","Deal Description"),
+                new DealListItem("Other Bar Image", "Other Bar Name", "Deal Description")
+        };
+        dealListItems= new ArrayList<>(Arrays.asList(deals));
+        dealsBundle.putSerializable("deals",dealListItems);
+
         // Instantiating Fragments
         final Fragment dealsFragment = new DealsFragment();
+        dealsFragment.setArguments(dealsBundle);
         final Fragment eventsFragment = new EventsFragment();
         final Fragment mapFragment = new MapFragment();
 
@@ -65,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
@@ -74,37 +88,79 @@ public class MainActivity extends AppCompatActivity {
         mBottomBar.onSaveInstanceState(outState);
     }
 
+    public class DealListItem{
+
+        private String barImage;
+        private String barName;
+        private String dealText;
+
+        public DealListItem(String image, String name, String deal){
+            barImage = image;
+            barName = name;
+            dealText = deal;
+        }
+
+        // getters
+        public String getBarImage(){return barImage;}
+        public String getBarName(){return barName;}
+        public String getDealText(){return dealText;}
+
+    }
+
+    class DealArrayAdapter extends ArrayAdapter<DealListItem>{
+
+        private Context context;
+        private List<DealListItem> dealList;
+
+        public DealArrayAdapter(Context context, int resource, ArrayList<DealListItem> objects){
+            super(context, resource, objects);
+
+            this.context = context;
+            this.dealList = objects;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent){
+
+            //get the deal item we are dispalying
+            DealListItem dealListItem = dealList.get(position);
+
+            //inflate the layout for each item
+            LayoutInflater inflater =
+                    (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.deal_item_layout, null);
+
+            TextView dealText = (TextView) view.findViewById(R.id.deal_text);
+            ImageView barImage = (ImageView) view.findViewById(R.id.bar_image);
+
+            //display deal text... may need to trim this up.
+            dealText.setText(dealListItem.getDealText());
+
+            //Getting image resource
+            int imageID = context.getResources()
+                    .getIdentifier(dealListItem.getBarImage(), "drawable", context.getPackageName());
+            barImage.setImageResource(imageID);
+
+            return view;
+
+        }
+
+    }
+
     public static class DealsFragment extends Fragment {
 
-        private ArrayAdapter<String> mDealsAdapter;
+        private ArrayAdapter<DealListItem> mDealsAdapter;
+        private ArrayList<DealListItem> dealListItems;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.deals_layout, container, false);
 
-            String[] dealData = {
-                    "Craft Beers - $4",
-                    "Vodka Red Bulls - $2",
-                    "Bottomless Momosas - $12",
-                    "BlueRibbon Beer - $1",
-                    "Whiskey Shots - $3",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-            };
+            //Getting Deal List Data
+            dealListItems= getArguments().getSerializable("deals");
 
-            ArrayList<String> dealsList = new ArrayList<>(Arrays.asList(dealData));
-
-            mDealsAdapter = new ArrayAdapter<String>(
-                    getActivity(),
-                    R.layout.deal_textview,
-                    R.id.list_item_deal,
-                    dealsList
-            );
+            mDealsAdapter = new DealArrayAdapter(this.getContext(), 0, dealListItems);
 
             ListView dealListView = (ListView) rootView.findViewById(
                     R.id.listview_deals);
