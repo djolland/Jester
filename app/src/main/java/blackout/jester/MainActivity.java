@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mBottomBar.setMaxFixedTabs(4);
         mBottomBar.setItems(R.menu.bottombar_menu);
         // Setting NavBar Style preferences
-        mBottomBar.setActiveTabColor("#a40b07");//Color that all nav icons will adopt when selected
+        //mBottomBar.setActiveTabColor(R.color.colorPrimaryDark);//Color that all nav icons will adopt when selected
 
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @Override
@@ -84,17 +83,17 @@ public class MainActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.deals_layout, container, false);
 
             String[] dealData = {
-                    "Craft Beers - $4",
-                    "Vodka Red Bulls - $2",
-                    "Bottomless Momosas - $12",
-                    "BlueRibbon Beer - $1",
-                    "Whiskey Shots - $3",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
-                    "DRINK - PRICE - DATE",
+                    "Craft Beers $4 - 7:00PM to Close - Gingers",
+                    "Vodka Red Bulls $2 - 8:00PM to Close - Sharky's",
+                    "Bottomless Momosas $12 - 7:00AM to 9:00AM - Cafe Due",
+                    "BlueRibbon Beer $1 - All Day - The Octopus",
+                    "Whiskey Shots $3 - 9:00PM to Close - Social House",
+                    "2 for 1 Wells $4 - 8:00PM to Close, Firday - Mugs",
+                    "$3 Domestics - 4:00PM to 6:00PM Monday - Peppers",
+                    "DRINK DEAL & PRICE - TIME/DATE - BAR NAME",
+                    "DRINK DEAL & PRICE - TIME/DATE - BAR NAME",
+                    "DRINK DEAL & PRICE - TIME/DATE - BAR NAME",
+                    "DRINK DEAL & PRICE - TIME/DATE - BAR NAME",
             };
 
             ArrayList<String> dealsList = new ArrayList<>(Arrays.asList(dealData));
@@ -124,14 +123,15 @@ public class MainActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.events_layout, container, false);
 
             String[] eventData = {
-                    "DJ Sumptin - 8:00PM - No Cover",
-                    "Lady Gaga - 7:00PM - $100 Cover",
-                    "PERFORMER - TIME - PRICE",
-                    "PERFORMER - TIME - PRICE",
-                    "PERFORMER - TIME - PRICE",
-                    "PERFORMER - TIME - PRICE",
-                    "PERFORMER - TIME - PRICE",
-                    "PERFORMER - TIME - PRICE",
+                    "DJ Sumptin - 8:00PM - No Cover - Social House",
+                    "Lady GooGa - 7:00PM - $10 Cover - The Octopus",
+                    "The Glass Eyed Peas - 9:00PM - $5 Cover - The Library",
+                    "The Rocking Eagles - 8:00PM - No Cover - The Pump Haus",
+                    "Old Joe's Band - 7:30PM - No Cover - Toads",
+                    "The Dish Water Blondes - 8:15PM - $5 - The Screaming Eagle",
+                    "Karaoke - 8:00PM Saturday - No Cover - Social House",
+                    "Trivia - 7:00PM Sunday - No Cover - The Octopus",
+                    "Prize Raffle - 6:00PM - The Library",
             };
 
             ArrayList<String> eventsList = new ArrayList<>(Arrays.asList(eventData));
@@ -168,14 +168,16 @@ public class MainActivity extends AppCompatActivity {
 
 
             String[] barData = {
-                    "Social House - 5 Miles",
-                    "The Library - 5 Miles",
-                    "Single Speed - 7 Miles",
-                    "BAR - DISTANCE",
-                    "BAR - DISTANCE",
-                    "BAR - DISTANCE",
-                    "BAR - DISTANCE",
-                    "BAR - DISTANCE",
+                    "Social House - 1 Mile",
+                    "The Octopus - 1 Mile",
+                    "Sharky's Fun House - 1 Mile",
+                    "Suds Upstairs - 1 Mile",
+                    "The Library - 1 Mile",
+                    "Gingers - 1 Mile",
+                    "Single Speed - 3 Miles",
+                    "Whiskey Road - 3 Miles",
+                    "The Pump Haus - 3 Miles",
+                    "Peppers Grill - 5 Miles"
             };
 
             ArrayList<String> barList = new ArrayList<>(Arrays.asList(barData));
