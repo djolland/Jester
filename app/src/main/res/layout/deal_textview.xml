@@ -7,5 +7,4 @@
     android:paddingRight="10dp"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical">
-
 </TextView>
