@@ -16,7 +16,7 @@ import java.util.List;
  * Created by djoll on 11/16/2016.
  */
 
-class DealArrayAdapter extends ArrayAdapter<DealListItem> {
+public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
 
     private Context context;
     private List<DealListItem> dealList;
@@ -28,6 +28,7 @@ class DealArrayAdapter extends ArrayAdapter<DealListItem> {
         this.dealList = objects;
     }
 
+    @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
         //get the deal item we are dispalying

@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle dealsBundle = new Bundle();
         DealListItem[] deals = {
-                new DealListItem("Bar Image","Bar Name","Deal Description"),
-                new DealListItem("Other Bar Image", "Other Bar Name", "Deal Description")
+                new DealListItem("ic_socialhouse_list","Social House", "2 for 1 Mixed Drinks"),
+                new DealListItem("ic_socialhouse_list", "Social House", "$3 Domestic Beers")
         };
 
         dealListItems= new ArrayList<>(Arrays.asList(deals));
@@ -41,10 +41,11 @@ public class MainActivity extends AppCompatActivity {
         final Fragment mapFragment = new MapFragment();
 
         mBottomBar = BottomBar.attach(this, savedInstanceState);
-        mBottomBar.setMaxFixedTabs(4);
+        mBottomBar.setMaxFixedTabs(4); //Default is 3, when this number is exceeded the bottombar
+                                       //changes styles. we don't want that happening.
         mBottomBar.setItems(R.menu.bottombar_menu);
         // Setting NavBar Style preferences
-        mBottomBar.setActiveTabColor("#a40b07");//Color that all nav icons will adopt when selected
+        //mBottomBar.setActiveTabColor("#a40b07");//Color that all nav icons will adopt when selected
 
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
