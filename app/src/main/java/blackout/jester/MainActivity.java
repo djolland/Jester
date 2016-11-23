@@ -1,6 +1,7 @@
 package blackout.jester;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -80,5 +81,12 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         mBottomBar.onSaveInstanceState(outState);
     }
+
+//    @Override
+//    public void onDealItemSelected(Uri barName) {
+//        Intent intent = new Intent(this, BarProfileActivity.class)
+//                .setData(barName);
+//        startActivity(intent);
+//    }
 
 }
