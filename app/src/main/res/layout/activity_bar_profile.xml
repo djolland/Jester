@@ -7,7 +7,13 @@
     android:layout_height="match_parent"
     android:parentActivityName="blackout.jester.MainActivity"
     tools:context="blackout.jester.BarProfileActivity"
-    tools:ignore="MergeRootFrame" >
+    tools:ignore="MergeRootFrame"
+    android:theme="@style/AppTheme"
+
+    android:name="android.support.PARENT_ACTIVITY"
+    android:value="blackout.jester.MainActivity">
+
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/profile_toolbar"
@@ -15,9 +21,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-
         app:theme="@style/ToolbarColoredIcons"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:popupTheme="@style/AppTheme">
     </android.support.v7.widget.Toolbar>
 
 </FrameLayout>
