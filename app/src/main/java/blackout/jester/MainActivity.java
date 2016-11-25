@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Generating deals list
-        //Intent dealsIntent = new Intent(getApplicationContext(), DealsFragment.class);
         ArrayList<DealListItem> dealListItems;
 
         Bundle dealsBundle = new Bundle();
@@ -81,12 +80,5 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         mBottomBar.onSaveInstanceState(outState);
     }
-
-//    @Override
-//    public void onDealItemSelected(Uri barName) {
-//        Intent intent = new Intent(this, BarProfileActivity.class)
-//                .setData(barName);
-//        startActivity(intent);
-//    }
 
 }

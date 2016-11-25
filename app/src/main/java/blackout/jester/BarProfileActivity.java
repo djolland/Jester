@@ -1,8 +1,6 @@
 package blackout.jester;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,11 +9,15 @@ import android.view.View;
 
 public class BarProfileActivity extends AppCompatActivity {
 
+    private DealListItem thisBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_profile);
         View rootView = findViewById(R.id.bar_profile_container);
+
+        thisBar = getIntent().getParcelableExtra("thisBar");
 
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
@@ -41,7 +43,9 @@ public class BarProfileActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setHomeButtonEnabled(true);
         ab.setDisplayHomeAsUpEnabled(true);
-        //ab.setHomeAsUpIndicator(R.drawable.ic_action_back);
+
+        //TODO: Replace the below code:
+        ab.setTitle(thisBar.getBarName());
     }
 
     @Override
@@ -49,7 +53,6 @@ public class BarProfileActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.profile_menu, menu);
         return super.onCreateOptionsMenu(menu);
-        //return true;
     }
 
     @Override

@@ -6,13 +6,14 @@
 
     <item
         android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_fav_empty_tinted"
         android:title="Favorite Bar"
+        android:icon="@drawable/ic_fav_empty_tinted"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/action_settings"
-        android:title="Settings"
-        android:orderInCategory="100" />
+        android:id="@+id/action_share"
+        android:title="Share Bar"
+        android:icon="@drawable/ic_share_tinted"
+        app:showAsAction="always"/>
 
 </menu>

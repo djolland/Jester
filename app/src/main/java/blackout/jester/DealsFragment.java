@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -54,6 +55,7 @@ public class DealsFragment extends Fragment {
         };
 
         dealListItems = new ArrayList<>(Arrays.asList(deals));
+
         mDealsAdapter = new DealArrayAdapter(this.getContext(), 0, dealListItems);
 
         // Get a reference to the ListView, and attach this adapter to it.
@@ -64,9 +66,11 @@ public class DealsFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(getActivity(), BarProfileActivity.class);
-                       // .setData(barName);
-                startActivity(intent);            }
+                DealListItem dealListItem = (DealListItem) adapterView.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(), BarProfileActivity.class)
+                        .putExtra("thisBar", dealListItem);
+                startActivity(intent);
+            }
         });
 
         return rootView;
