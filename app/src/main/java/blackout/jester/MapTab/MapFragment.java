@@ -1,4 +1,4 @@
-package blackout.jester;
+package blackout.jester.MapTab;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import blackout.jester.R;
 
 /**
  * Created by djoll on 11/18/2016.

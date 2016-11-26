@@ -1,11 +1,8 @@
-package blackout.jester;
+package blackout.jester.DealsTab;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import blackout.jester.BarProfileView.BarProfileActivity;
+import blackout.jester.R;
 
 /**
  * Created by djoll on 11/18/2016.
@@ -24,20 +23,8 @@ import java.util.Arrays;
 public class DealsFragment extends Fragment {
 
     private ArrayAdapter<DealListItem> mDealsAdapter; //need to replace with custom adapter
-    private ArrayList<DealListItem> dealListItems = new ArrayList<>();
     private ListView mListView;
-
-//    /**
-//     * A callback interface that all activities containing this fragment must
-//     * implement. This mechanism allows activities to be notified of item
-//     * selections.
-//     */
-//    public interface Callback {
-//        /**
-//         * DetailFragmentCallback for when an item has been selected.
-//         */
-//        public void onDealItemSelected(Uri barName);
-//    }
+    private ArrayList<DealListItem> dealListItems;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,14 +34,7 @@ public class DealsFragment extends Fragment {
 
 
         //Getting Deal List Data
-        //dealListItems = getArguments().("deals");
-        ArrayList<DealListItem> dealListItems;
-        DealListItem[] deals = {
-                new DealListItem("social_house_logo","Social House", "2 for 1 Mixed Drinks"),
-                new DealListItem("social_house_logo", "Social House", "$3 Domestic Beers")
-        };
-
-        dealListItems = new ArrayList<>(Arrays.asList(deals));
+        dealListItems = getArguments().getParcelableArrayList("deals");
 
         mDealsAdapter = new DealArrayAdapter(this.getContext(), 0, dealListItems);
 
@@ -68,7 +48,7 @@ public class DealsFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 DealListItem dealListItem = (DealListItem) adapterView.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity(), BarProfileActivity.class)
-                        .putExtra("thisBar", dealListItem);
+                        .putExtra("thisBar", dealListItem.getBarData());
                 startActivity(intent);
             }
         });

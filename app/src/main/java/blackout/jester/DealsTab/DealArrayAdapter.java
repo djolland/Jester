@@ -1,4 +1,4 @@
-package blackout.jester;
+package blackout.jester.DealsTab;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import blackout.jester.R;
 
 /**
  * Created by djoll on 11/16/2016.

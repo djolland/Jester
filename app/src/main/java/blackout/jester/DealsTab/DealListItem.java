@@ -1,7 +1,9 @@
-package blackout.jester;
+package blackout.jester.DealsTab;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import blackout.jester.BarData.BarData;
 
 /**
  * Created by djoll on 11/16/2016.
@@ -9,17 +11,22 @@ import android.os.Parcelable;
 
 public class DealListItem implements Parcelable {
 
+    private BarData barData;
     private String barImage;
     private String barName;
     private String dealText;
 
-    public DealListItem(String image, String name, String deal){
-        barImage = image;
-        barName = name;
-        dealText = deal;
+    public DealListItem(BarData barData, int dealPosition){
+        this.barData = barData;
+        this.barImage = barData.getBarListImage();
+        this.barName = barData.getBarName();
+        this.dealText = barData.getDeal(dealPosition)
+                .getDescription() +
+                "\nPrice: $" + barData.getDeal(dealPosition).getPrice().toString();
     }
 
-    // getters
+    // Getters
+    public BarData getBarData(){return barData;};
     public String getBarImage(){return barImage;}
     public String getBarName(){return barName;}
     public String getDealText(){return dealText;}
@@ -39,7 +46,8 @@ public class DealListItem implements Parcelable {
     }
 
     public void writeToParcel(Parcel out, int flags) {
-        out.writeStringArray(new String[] {this.barImage,
+        out.writeStringArray(new String[] {
+                this.barImage,
                 this.barName,
                 this.dealText});
     }

@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BarProfileActivity"
+            android:name=".BarProfileView.BarProfileActivity"
             android:label="@string/title_activity_bar_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

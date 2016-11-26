@@ -1,15 +1,20 @@
-package blackout.jester;
+package blackout.jester.BarProfileView;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import blackout.jester.BarData.BarData;
+import blackout.jester.DealsTab.DealListItem;
+import blackout.jester.R;
+
 public class BarProfileActivity extends AppCompatActivity {
 
-    private DealListItem thisBar;
+    private BarData thisBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,7 @@ public class BarProfileActivity extends AppCompatActivity {
             // using a fragment transaction.
 
             Bundle arguments = new Bundle();
+            arguments.putParcelable("barData", thisBar);
 
             BarProfileFragment fragment = new BarProfileFragment();
             fragment.setArguments(arguments);
@@ -43,9 +49,9 @@ public class BarProfileActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setHomeButtonEnabled(true);
         ab.setDisplayHomeAsUpEnabled(true);
-
-        //TODO: Replace the below code:
         ab.setTitle(thisBar.getBarName());
+
+
     }
 
     @Override

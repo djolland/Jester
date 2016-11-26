@@ -4,7 +4,13 @@
     android:id="@+id/bar_profile_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BarProfileActivity">
+    tools:context=".BarProfileView.BarProfileActivity">
+
+    <ImageView
+        android:id="@+id/bar_profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="Bar Profile Image" />
 
     <RelativeLayout
         android:layout_width="match_parent"

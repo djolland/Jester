@@ -1,7 +1,5 @@
 package blackout.jester;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -10,28 +8,64 @@ import android.os.Bundle;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import blackout.jester.BarData.BarData;
+import blackout.jester.BarData.BarDealData;
+import blackout.jester.BarData.BarEventData;
+import blackout.jester.BarData.DealType;
+import blackout.jester.DealsTab.DealListItem;
+import blackout.jester.DealsTab.DealsFragment;
+import blackout.jester.EventsTab.EventsFragment;
+import blackout.jester.MapTab.MapFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomBar mBottomBar;
+    private BarData barSocialHouse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Generating deals list
-        ArrayList<DealListItem> dealListItems;
+        // Generating Bars //
 
+        /** Social House **/
+        barSocialHouse = new BarData(
+                "Social House",
+                "social_house_logo",
+                "social_house_profile"
+        );
+        // * Deals
+        ArrayList<BarDealData> socialDeals = new ArrayList<>();
+        socialDeals.add(
+                new BarDealData(
+                        "2 for 1 Mixed Drinks", new BigDecimal(4.00), DealType.MIXEDDRINK, "Today")
+        );
+        socialDeals.add(
+                new BarDealData(
+                        "Domestic Beers", new BigDecimal(3.00), DealType.BEER, "Today")
+        );
+
+        // * Events
+        ArrayList<BarEventData> socialEvents = new ArrayList<>();
+        socialEvents.add(new BarEventData("Event 1"));
+        socialEvents.add(new BarEventData("Event 2"));
+
+        // * Adding data to bar.
+        barSocialHouse.addDeals(socialDeals);
+        barSocialHouse.addEvents(socialEvents);
+
+        // Generating the Deals List //
+        ArrayList<DealListItem> dealListItems = barSocialHouse.generateDealList();
+
+        // Generating the Events List //
+        //TODO: Stuff here.
+
+        // Bundling list data for passing to fragments
         Bundle dealsBundle = new Bundle();
-        DealListItem[] deals = {
-                new DealListItem("ic_socialhouse_list","Social House", "2 for 1 Mixed Drinks"),
-                new DealListItem("ic_socialhouse_list", "Social House", "$3 Domestic Beers")
-        };
-
-        dealListItems= new ArrayList<>(Arrays.asList(deals));
         dealsBundle.putSerializable("deals",dealListItems);
 
         // Instantiating Fragments
@@ -40,12 +74,11 @@ public class MainActivity extends AppCompatActivity {
         final Fragment eventsFragment = new EventsFragment();
         final Fragment mapFragment = new MapFragment();
 
+        // Setting up Bottom Bar navigation
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.setMaxFixedTabs(4); //Default is 3, when this number is exceeded the bottombar
                                        //changes styles. we don't want that happening.
         mBottomBar.setItems(R.menu.bottombar_menu);
-        // Setting NavBar Style preferences
-
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
