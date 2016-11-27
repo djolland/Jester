@@ -21,8 +21,10 @@ import blackout.jester.R;
  */
 
 public class DealsFragment extends Fragment {
+    // the fragments incoming arg key
+    private static final String DEALS = "deals";
 
-    private ArrayAdapter<DealListItem> mDealsAdapter; //need to replace with custom adapter
+    private ArrayAdapter<DealListItem> mDealsAdapter;
     private ListView mListView;
     private ArrayList<DealListItem> dealListItems;
 
@@ -32,9 +34,8 @@ public class DealsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.deals_layout, container, false);
 
-
         //Getting Deal List Data
-        dealListItems = getArguments().getParcelableArrayList("deals");
+        dealListItems = getArguments().getParcelableArrayList(DEALS);
 
         mDealsAdapter = new DealArrayAdapter(this.getContext(), 0, dealListItems);
 
@@ -48,7 +49,8 @@ public class DealsFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 DealListItem dealListItem = (DealListItem) adapterView.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity(), BarProfileActivity.class)
-                        .putExtra("thisBar", dealListItem.getBarData());
+                        .putExtra("thisBar", dealListItem.getBarData())
+                        .putExtra("focusTab", "deals");
                 startActivity(intent);
             }
         });

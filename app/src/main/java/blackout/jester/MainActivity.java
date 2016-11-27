@@ -23,7 +23,7 @@ import blackout.jester.MapTab.MapFragment;
 public class MainActivity extends AppCompatActivity {
 
     private BottomBar mBottomBar;
-    private BarData barSocialHouse;
+    //private BarData barSocialHouse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
         // Generating Bars //
 
         /** Social House **/
-        barSocialHouse = new BarData(
-                "Social House",
-                "social_house_logo",
-                "social_house_profile"
+        BarData barSocialHouse =
+                new BarData("Social House",
+                            "social_house_logo",
+                            "social_house_profile"
         );
         // * Deals
         ArrayList<BarDealData> socialDeals = new ArrayList<>();
@@ -58,15 +58,23 @@ public class MainActivity extends AppCompatActivity {
         barSocialHouse.addDeals(socialDeals);
         barSocialHouse.addEvents(socialEvents);
 
-        // Generating the Deals List //
-        ArrayList<DealListItem> dealListItems = barSocialHouse.generateDealList();
+        /** Blank Bar **/
+        BarData barBlankBar =
+                new BarData("Blank Bar");
 
+        barBlankBar.addDeal(
+                new BarDealData("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today"));
+
+        // Generating the Deals List //
+        ArrayList<DealListItem> dealListItems = new ArrayList<>();
+        dealListItems.addAll(barSocialHouse.generateDealList());
+        dealListItems.addAll(barBlankBar.generateDealList());
         // Generating the Events List //
         //TODO: Stuff here.
 
         // Bundling list data for passing to fragments
         Bundle dealsBundle = new Bundle();
-        dealsBundle.putSerializable("deals",dealListItems);
+        dealsBundle.putParcelableArrayList("deals",dealListItems);
 
         // Instantiating Fragments
         final Fragment dealsFragment = new DealsFragment();
