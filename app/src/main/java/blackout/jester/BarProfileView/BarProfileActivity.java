@@ -20,19 +20,15 @@ public class BarProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bar_profile);
         View rootView = findViewById(R.id.bar_profile_container);
 
-        Bundle extras = getIntent().getExtras();
+        Bundle args = getIntent().getExtras();
 
-        thisBar = extras.getParcelable("thisBar");
+        thisBar = args.getParcelable("thisBar");
 
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-
-//            Bundle arguments = new Bundle();
-//            arguments.putParcelable("barData", thisBar);
-
             BarProfileFragment fragment = new BarProfileFragment();
-            fragment.setArguments(extras);
+            fragment.setArguments(args);
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.bar_profile_container, fragment)

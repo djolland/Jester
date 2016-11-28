@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,12 +44,6 @@ public class BarProfileDealArrayAdapter extends ArrayAdapter<DealListItem> {
         //display deal text... may need to trim this up.
         TextView dealText = (TextView) view.findViewById(R.id.deal_text);
         dealText.setText(dealListItem.getProfileDealText());
-
-        // Setting Share image (this should be able to be handled in xml... doesnt seem to work.
-//        ImageView barImage = (ImageView) view.findViewById(R.id.share_image);
-//        int imageID = context.getResources()
-//                .getIdentifier("ic_share", "drawable", context.getPackageName());
-//        barImage.setImageResource(imageID);
 
         return view;
 

@@ -105,7 +105,6 @@ public class BarProfileFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 

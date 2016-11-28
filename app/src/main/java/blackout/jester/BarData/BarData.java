@@ -3,6 +3,7 @@ package blackout.jester.BarData;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import blackout.jester.DealsTab.DealListItem;
@@ -78,6 +79,10 @@ public class BarData implements Parcelable {
 
     public void setBarName(String barName){this.barName = barName;}
 
+    public void addDeal(String description, BigDecimal price, DealType dealType, String date){
+        deals.add(new BarDealData(description, price, dealType, date));
+    }
+
     public void addDeal(BarDealData dealData){
         deals.add(dealData);
     }
@@ -86,6 +91,10 @@ public class BarData implements Parcelable {
         for (BarDealData dealData: dealDatas){
             deals.add(dealData);
         }
+    }
+
+    public void addEvent (String description){
+        events.add(new BarEventData(description));
     }
 
     public void addEvent (BarEventData eventData){events.add(eventData);}

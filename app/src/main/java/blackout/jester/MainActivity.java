@@ -35,46 +35,35 @@ public class MainActivity extends AppCompatActivity {
         /** Social House **/
         BarData barSocialHouse =
                 new BarData("Social House",
-                            "social_house_logo",
+                            "social_house_list",
                             "social_house_profile"
         );
-        // * Deals
-        ArrayList<BarDealData> socialDeals = new ArrayList<>();
-        socialDeals.add(
-                new BarDealData(
-                        "2 for 1 Mixed Drinks", new BigDecimal(4.00), DealType.MIXEDDRINK, "Today")
-        );
-        socialDeals.add(
-                new BarDealData(
-                        "Domestic Beers", new BigDecimal(3.00), DealType.BEER, "Today")
-        );
 
-        // * Events
-        ArrayList<BarEventData> socialEvents = new ArrayList<>();
-        socialEvents.add(new BarEventData("Event 1"));
-        socialEvents.add(new BarEventData("Event 2"));
+        // * Adding Deals
+        barSocialHouse.addDeal("2 for 1 Mixed Drinks", new BigDecimal(4.00), DealType.MIXEDDRINK, "Today");
+        barSocialHouse.addDeal("Domestic Beers", new BigDecimal(3.00), DealType.BEER, "Today");
 
-        // * Adding data to bar.
-        barSocialHouse.addDeals(socialDeals);
-        barSocialHouse.addEvents(socialEvents);
+        // * Adding Events
+        barSocialHouse.addEvent("Event 1");
+        barSocialHouse.addEvent("Event 2");
 
         /** Blank Bar **/
-        BarData barBlankBar =
-                new BarData("Blank Bar");
+        BarData barBlankBar = new BarData("Blank Bar");
+        // * Adding Deals
+        barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
 
-        barBlankBar.addDeal(
-                new BarDealData("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today"));
-
-        // Generating the Deals List //
+        // Generating the Deals List for Main Deals Tab//
         ArrayList<DealListItem> dealListItems = new ArrayList<>();
         dealListItems.addAll(barSocialHouse.generateDealList());
         dealListItems.addAll(barBlankBar.generateDealList());
+
         // Generating the Events List //
         //TODO: Stuff here.
 
         // Bundling list data for passing to fragments
         Bundle dealsBundle = new Bundle();
         dealsBundle.putParcelableArrayList("deals",dealListItems);
+        //TODO: bundle event data
 
         // Instantiating Fragments
         final Fragment dealsFragment = new DealsFragment();

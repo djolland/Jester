@@ -40,7 +40,7 @@ public class  DealListItem implements Parcelable {
     public String getDealText(){return dealText;}
     public String getProfileDealText(){return profileDealText;}
 
-    //Parceling data
+    // Parceling data
     private DealListItem(Parcel in) {
         String[] data = new String[3];
 
