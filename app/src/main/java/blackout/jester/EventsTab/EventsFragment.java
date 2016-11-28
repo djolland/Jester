@@ -12,7 +12,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import blackout.jester.BarProfileView.BarProfileActivity;
-import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.R;
 
 /**
@@ -32,7 +31,7 @@ public class EventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.events_layout, container, false);
 
-        //Getting Deal List Data
+        //Getting Event List Data
         eventListItems = getArguments().getParcelableArrayList(EVENTS);
 
         mEventsAdapter = new EventArrayAdapter(this.getContext(), 0, eventListItems);

@@ -127,13 +127,13 @@ public class BarData implements Parcelable {
      * @return ArrayList of DealListItems generated from this bars events.
      */
     public ArrayList<EventListItem> generateEventList(){
-        ArrayList<EventListItem> dealList = new ArrayList<>();
+        ArrayList<EventListItem> eventList = new ArrayList<>();
 
         for (int i = 0; i < events.size(); i++){
-            dealList.add(new EventListItem(this, i));
+            eventList.add(new EventListItem(this, i));
         }
 
-        return dealList;
+        return eventList;
     }
 
     //Parceling data

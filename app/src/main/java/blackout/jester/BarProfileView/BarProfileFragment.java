@@ -26,6 +26,10 @@ public class BarProfileFragment extends Fragment {
     private BarProfileDealArrayAdapter mDealsAdapter;
     private ListView mDealListView;
 
+    private BarProfileEventArrayAdapter mEventsAdapter;
+    private ListView mEventListView;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +88,6 @@ public class BarProfileFragment extends Fragment {
         }
 
         //** Setting up Deals Tab view**//
-        //Setting up adapter
         mDealsAdapter = new BarProfileDealArrayAdapter(
                 this.getContext(), 0, barData.generateDealList());
 
@@ -93,6 +96,23 @@ public class BarProfileFragment extends Fragment {
         mDealListView.setAdapter(mDealsAdapter);
         // Set what happens when an item is selected
         mDealListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //TODO: Add Share Pop-up
+
+            }
+        });
+
+        //** Setting up Events Tab View **//
+        mEventsAdapter = new BarProfileEventArrayAdapter(
+                this.getContext(), 0, barData.generateEventList());
+
+        // Get a reference to the ListView, and attach this adapter to it.
+        mEventListView = (ListView) view.findViewById(R.id.profile_events_list);
+        mEventListView.setAdapter(mEventsAdapter);
+        // Set what happens when an item is selected
+        mEventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {

@@ -41,14 +41,12 @@ public class BarEventData implements Parcelable{
         return coverCharge;
     }
 
-    // Setters
-
     //Parceling data
     private BarEventData(Parcel in) {
-        String[] data = new String[1];
-
-        in.readStringArray(data);
-        this.description = data[0];
+        this.description = in.readString();
+        this.time = in.readString();
+        this.date = in.readString();
+        this.coverCharge = new BigDecimal(in.readString());
     }
 
     public int describeContents(){
@@ -56,8 +54,10 @@ public class BarEventData implements Parcelable{
     }
 
     public void writeToParcel(Parcel out, int flags) {
-        out.writeStringArray(new String[] {
-                this.description});
+        out.writeString(this.description);
+        out.writeString(this.date);
+        out.writeString(this.time);
+        out.writeString(this.coverCharge.toString());
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

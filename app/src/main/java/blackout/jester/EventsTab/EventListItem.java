@@ -25,7 +25,7 @@ public class EventListItem implements Parcelable {
         this.barImage = barData.getBarListImage();
         this.barName = barData.getBarName();
 
-        BarEventData event = barData.getEvent(eventPosition);
+        BarEventData event = this.barData.getEvent(eventPosition);
         // Constructing the deal text that will appear in the main Deal Tab List
         this.eventTabText = event.getDescription() + " - " + event.getTime() +
                 "\nCover: $" + event.getCoverCharge().toString();
