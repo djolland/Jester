@@ -17,6 +17,7 @@ import blackout.jester.BarData.BarEventData;
 import blackout.jester.BarData.DealType;
 import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.DealsTab.DealsFragment;
+import blackout.jester.EventsTab.EventListItem;
 import blackout.jester.EventsTab.EventsFragment;
 import blackout.jester.MapTab.MapFragment;
 
@@ -56,17 +57,21 @@ public class MainActivity extends AppCompatActivity {
         dealListItems.addAll(barBlankBar.generateDealList());
 
         // Generating the Events List for the main Events Tab//
-        //TODO: Stuff here.
+        ArrayList<EventListItem> eventListItems = new ArrayList<>();
+        eventListItems.addAll(barSocialHouse.generateEventList());
+        eventListItems.addAll(barBlankBar.generateEventList());
 
         // Bundling Deal List to pass to fragments
         Bundle dealsBundle = new Bundle();
         dealsBundle.putParcelableArrayList("deals",dealListItems);
-        //TODO: bundle event data
+        Bundle eventBundle = new Bundle();
+        eventBundle.putParcelableArrayList("events",eventListItems);
 
         // Instantiating Fragments
         final Fragment dealsFragment = new DealsFragment();
         dealsFragment.setArguments(dealsBundle);
         final Fragment eventsFragment = new EventsFragment();
+        eventsFragment.setArguments(eventBundle);
         final Fragment mapFragment = new MapFragment();
 
         // Setting up Bottom Bar navigation

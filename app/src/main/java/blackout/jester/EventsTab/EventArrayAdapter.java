@@ -33,19 +33,19 @@ public class EventArrayAdapter extends ArrayAdapter<EventListItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
-        //get the deal item we are dispalying
+        //get the event item we are dispalying
         EventListItem eventListItem = eventList.get(position);
 
         //inflate the layout for each item
         LayoutInflater inflater =
                 (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.deal_item_layout, null);
+        View view = inflater.inflate(R.layout.event_item_layout, null);
 
-        TextView dealText = (TextView) view.findViewById(R.id.deal_text);
+        TextView eventText = (TextView) view.findViewById(R.id.event_text);
         ImageView barImage = (ImageView) view.findViewById(R.id.bar_image);
 
-        //display deal text... may need to trim this up.
-        dealText.setText(eventListItem.getEventTabText());
+        //display event text... may need to trim this up.
+        eventText.setText(eventListItem.getEventTabText());
 
         //Getting image resource
         int imageID = context.getResources()

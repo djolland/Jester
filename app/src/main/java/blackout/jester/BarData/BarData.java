@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import blackout.jester.DealsTab.DealListItem;
+import blackout.jester.EventsTab.EventListItem;
 
 /**
  * Contains all data for a given bar.
@@ -106,7 +107,7 @@ public class BarData implements Parcelable {
     }
 
     /**
-     * Generates an ArrayList of DealListItems from this bars deals for display in the Deals tab.
+     * Generates an ArrayList of DealListItems from this bars deals.
      *
      * @return ArrayList of DealListItems generated from this bars deals.
      */
@@ -120,7 +121,20 @@ public class BarData implements Parcelable {
         return dealList;
     }
 
+    /**
+     * Generates an ArrayList of EventListItems from this bars events.
+     *
+     * @return ArrayList of DealListItems generated from this bars events.
+     */
+    public ArrayList<EventListItem> generateEventList(){
+        ArrayList<EventListItem> dealList = new ArrayList<>();
 
+        for (int i = 0; i < events.size(); i++){
+            dealList.add(new EventListItem(this, i));
+        }
+
+        return dealList;
+    }
 
     //Parceling data
     private BarData(Parcel in) {

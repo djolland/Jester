@@ -23,7 +23,7 @@ public class DealsFragment extends Fragment {
     // the fragments incoming arg key
     private static final String DEALS = "deals";
 
-    private ArrayAdapter<DealListItem> mDealsAdapter;
+    private DealArrayAdapter mDealsAdapter;
     private ListView mListView;
     private ArrayList<DealListItem> dealListItems;
 
@@ -36,7 +36,7 @@ public class DealsFragment extends Fragment {
         //Getting Deal List Data
         dealListItems = getArguments().getParcelableArrayList(DEALS);
 
-        mDealsAdapter = new blackout.jester.DealsTab.DealArrayAdapter(this.getContext(), 0, dealListItems);
+        mDealsAdapter = new DealArrayAdapter(this.getContext(), 0, dealListItems);
 
         // Get a reference to the ListView, and attach this adapter to it.
         mListView = (ListView) rootView.findViewById(R.id.listview_deals);
