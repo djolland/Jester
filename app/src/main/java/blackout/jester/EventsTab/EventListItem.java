@@ -1,56 +1,56 @@
-package blackout.jester.DealsTab;
+package blackout.jester.EventsTab;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import blackout.jester.BarData.BarData;
+import blackout.jester.BarData.BarEventData;
 
 /**
- * Encapsulates all data needed to display a Deal in any of the available lists.
+ * Encapsulates all data needed to display an Event in any of the available lists.
  *
  * This class is meant to be used with an ArrayAdapter.
  */
 
-public class  DealListItem implements Parcelable {
+public class EventListItem implements Parcelable {
 
     private BarData barData;
     private String barImage;
     private String barName;
-    private String dealTabText;
-    private String profileDealText;
+    private String eventTabText;
+    private String profileEventText;
 
-    public DealListItem(BarData barData, int dealPosition){
+    public EventListItem(BarData barData, int eventPosition){
         this.barData = barData;
         this.barImage = barData.getBarListImage();
         this.barName = barData.getBarName();
 
+        BarEventData event = barData.getEvent(eventPosition);
         // Constructing the deal text that will appear in the main Deal Tab List
-        this.dealTabText = barData.getDeal(dealPosition)
-                .getDescription() +
-                "\nPrice: $" + barData.getDeal(dealPosition).getPrice().toString();
-
+        this.eventTabText = event.getDescription() + " - " + event.getTime() +
+                "\nCover: $" + event.getCoverCharge().toString();
         // Constructing the deal text that will appear in the Deal Tab list in the
         // Bar Profile page.
-        this.profileDealText = barData.getDeal(dealPosition)
-                .getDescription() + " - $" + barData.getDeal(dealPosition).getPrice().toString();
+        this.profileEventText = event.getDescription() + " - $" + event.getCoverCharge().toString();
     }
 
     // Getters
     public BarData getBarData(){return barData;};
     public String getBarImage(){return barImage;}
     public String getBarName(){return barName;}
-    public String getDealTabText(){return dealTabText;}
-    public String getProfileDealText(){return profileDealText;}
+    public String getEventTabText(){return eventTabText;}
+    public String getProfileEventText(){return profileEventText;}
 
     // Parceling data
-    private DealListItem(Parcel in) {
-        String[] data = new String[3];
+    private EventListItem(Parcel in) {
+        String[] data = new String[4];
 
         in.readParcelable(this.barData.getClass().getClassLoader());
         in.readStringArray(data);
         this.barImage = data[0];
         this.barName = data[1];
-        this.dealTabText = data[2];
+        this.eventTabText = data[2];
+        this.profileEventText = data[3];
     }
 
     public int describeContents(){
@@ -62,17 +62,19 @@ public class  DealListItem implements Parcelable {
         out.writeStringArray(new String[] {
                 this.barImage,
                 this.barName,
-                this.dealTabText});
+                this.eventTabText,
+                this.profileEventText});
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
-        public DealListItem createFromParcel(Parcel in) {
-            return new DealListItem(in);
+        public EventListItem createFromParcel(Parcel in) {
+            return new EventListItem(in);
         }
 
-        public DealListItem[] newArray(int size) {
-            return new DealListItem[size];
+        public EventListItem[] newArray(int size) {
+            return new EventListItem[size];
         }
     };
+
 
 }

@@ -38,29 +38,27 @@ public class MainActivity extends AppCompatActivity {
                             "social_house_list",
                             "social_house_profile"
         );
-
         // * Adding Deals
         barSocialHouse.addDeal("2 for 1 Mixed Drinks", new BigDecimal(4.00), DealType.MIXEDDRINK, "Today");
         barSocialHouse.addDeal("Domestic Beers", new BigDecimal(3.00), DealType.BEER, "Today");
-
         // * Adding Events
-        barSocialHouse.addEvent("Event 1");
-        barSocialHouse.addEvent("Event 2");
+        barSocialHouse.addEvent("DJ Sumptin", "8:00PM", "Today", new BigDecimal(0.00));
+        barSocialHouse.addEvent("Lady Googa", "7:00PM", "Tomorrow", new BigDecimal(10.00));
 
         /** Blank Bar **/
         BarData barBlankBar = new BarData("Blank Bar");
         // * Adding Deals
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
 
-        // Generating the Deals List for Main Deals Tab//
+        // Generating the Deals List for the main Deals Tab//
         ArrayList<DealListItem> dealListItems = new ArrayList<>();
         dealListItems.addAll(barSocialHouse.generateDealList());
         dealListItems.addAll(barBlankBar.generateDealList());
 
-        // Generating the Events List //
+        // Generating the Events List for the main Events Tab//
         //TODO: Stuff here.
 
-        // Bundling list data for passing to fragments
+        // Bundling Deal List to pass to fragments
         Bundle dealsBundle = new Bundle();
         dealsBundle.putParcelableArrayList("deals",dealListItems);
         //TODO: bundle event data

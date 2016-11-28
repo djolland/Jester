@@ -93,8 +93,8 @@ public class BarData implements Parcelable {
         }
     }
 
-    public void addEvent (String description){
-        events.add(new BarEventData(description));
+    public void addEvent (String description, String time, String date, BigDecimal coverCharge){
+        events.add(new BarEventData(description, time, date, coverCharge));
     }
 
     public void addEvent (BarEventData eventData){events.add(eventData);}
@@ -119,6 +119,8 @@ public class BarData implements Parcelable {
 
         return dealList;
     }
+
+
 
     //Parceling data
     private BarData(Parcel in) {

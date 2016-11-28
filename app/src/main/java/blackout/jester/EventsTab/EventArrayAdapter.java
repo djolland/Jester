@@ -1,4 +1,4 @@
-package blackout.jester.DealsTab;
+package blackout.jester.EventsTab;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,26 +15,26 @@ import java.util.List;
 import blackout.jester.R;
 
 /**
- * Created by djoll on 11/16/2016.
+ * Adapts EventListitems to Main Event tab List
  */
 
-public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
+public class EventArrayAdapter extends ArrayAdapter<EventListItem> {
 
     private Context context;
-    private List<DealListItem> dealList;
+    private List<EventListItem> eventList;
 
-    public DealArrayAdapter(Context context, int resource, ArrayList<DealListItem> objects){
+    public EventArrayAdapter(Context context, int resource, ArrayList<EventListItem> objects){
         super(context, resource, objects);
 
         this.context = context;
-        this.dealList = objects;
+        this.eventList = objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
         //get the deal item we are dispalying
-        DealListItem dealListItem = dealList.get(position);
+        EventListItem eventListItem = eventList.get(position);
 
         //inflate the layout for each item
         LayoutInflater inflater =
@@ -45,11 +45,11 @@ public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
         ImageView barImage = (ImageView) view.findViewById(R.id.bar_image);
 
         //display deal text... may need to trim this up.
-        dealText.setText(dealListItem.getDealTabText());
+        dealText.setText(eventListItem.getEventTabText());
 
         //Getting image resource
         int imageID = context.getResources()
-                .getIdentifier(dealListItem.getBarImage(), "drawable", context.getPackageName());
+                .getIdentifier(eventListItem.getBarImage(), "drawable", context.getPackageName());
         barImage.setImageResource(imageID);
 
         return view;

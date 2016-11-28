@@ -1,21 +1,17 @@
 package blackout.jester.BarProfileView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 
 import blackout.jester.BarData.BarData;
-import blackout.jester.DealsTab.DealArrayAdapter;
-import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.R;
 
 
