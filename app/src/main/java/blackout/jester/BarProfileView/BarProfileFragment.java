@@ -3,6 +3,7 @@ package blackout.jester.BarProfileView;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import blackout.jester.BarData.BarData;
 import blackout.jester.R;
@@ -22,13 +24,6 @@ public class BarProfileFragment extends Fragment {
 
     private BarData barData;
     private String focusTab;
-
-    private BarProfileDealArrayAdapter mDealsAdapter;
-    private ListView mDealListView;
-
-    private BarProfileEventArrayAdapter mEventsAdapter;
-    private ListView mEventListView;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,12 +82,24 @@ public class BarProfileFragment extends Fragment {
             tabHost.setCurrentTabByTag("Info");
         }
 
+        //** Setting up Info Tab view**//
+        TextView mInfoTextView = (TextView) view.findViewById(R.id.profile_info_text);
+        mInfoTextView.setText(Html.fromHtml(
+                "<b>" + "Address:" + "</b>" +  "<br />" +
+                "<small>" + barData.getAddress() + "</small>" + "<br />" +
+                "<br/>" +
+                "<b>" + "Hours:" + "</b>" +  "<br />" +
+                "<small>" + barData.getHours() + "</small>" + "<br />" +
+                "<br/>" +
+                "<b>" + "Contact:" + "</b>" +  "<br />" +
+                "<small>" + barData.getContactInfo() + "</small>" + "<br />"));
+
         //** Setting up Deals Tab view**//
-        mDealsAdapter = new BarProfileDealArrayAdapter(
+        BarProfileDealArrayAdapter mDealsAdapter = new BarProfileDealArrayAdapter(
                 this.getContext(), 0, barData.generateDealList());
 
         // Get a reference to the ListView, and attach this adapter to it.
-        mDealListView = (ListView) view.findViewById(R.id.profile_deals_list);
+        ListView mDealListView = (ListView) view.findViewById(R.id.profile_deals_list);
         mDealListView.setAdapter(mDealsAdapter);
         // Set what happens when an item is selected
         mDealListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -105,11 +112,11 @@ public class BarProfileFragment extends Fragment {
         });
 
         //** Setting up Events Tab View **//
-        mEventsAdapter = new BarProfileEventArrayAdapter(
+        BarProfileEventArrayAdapter mEventsAdapter = new BarProfileEventArrayAdapter(
                 this.getContext(), 0, barData.generateEventList());
 
         // Get a reference to the ListView, and attach this adapter to it.
-        mEventListView = (ListView) view.findViewById(R.id.profile_events_list);
+        ListView mEventListView = (ListView) view.findViewById(R.id.profile_events_list);
         mEventListView.setAdapter(mEventsAdapter);
         // Set what happens when an item is selected
         mEventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

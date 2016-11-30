@@ -66,6 +66,12 @@ public class BarData implements Parcelable {
 
     public BarInfoData getInfo(){return info;}
 
+    public String getAddress(){return info.getAddress();}
+
+    public String getHours(){return info.getHours();}
+
+    public String getContactInfo(){return info.getContact();}
+
     public ArrayList<BarDealData> getDeals() {
         return deals;
     }
