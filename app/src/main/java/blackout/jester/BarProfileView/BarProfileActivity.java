@@ -13,6 +13,7 @@ import blackout.jester.R;
 public class BarProfileActivity extends AppCompatActivity {
 
     private BarData thisBar;
+    private Menu profileMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,14 @@ public class BarProfileActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        this.profileMenu = menu;
         getMenuInflater().inflate(R.menu.profile_menu, menu);
+        if (thisBar.isFavorite()) {
+            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_fav_full_tinted);
+        }
+        else{
+            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_fav_empty_tinted);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -64,8 +72,17 @@ public class BarProfileActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_favorite:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+                // User chose the "Favorite" icon
+                if (thisBar.isFavorite()) {
+                    thisBar.removeFromFavorites();
+                    profileMenu.findItem(R.id.action_favorite)
+                            .setIcon(R.drawable.ic_fav_empty_tinted);
+                }
+                else{
+                    thisBar.addToFavorites();
+                    profileMenu.findItem(R.id.action_favorite)
+                            .setIcon(R.drawable.ic_fav_full_tinted);
+                }
                 return true;
 
             default:

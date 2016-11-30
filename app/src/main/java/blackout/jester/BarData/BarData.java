@@ -18,6 +18,7 @@ public class BarData implements Parcelable {
     private String barName;
     private String barListImage;
     private String barProfileImage;
+    private Boolean favorite;
     private BarInfoData info;
     private ArrayList<BarDealData> deals;
     private ArrayList<BarEventData> events;
@@ -30,6 +31,7 @@ public class BarData implements Parcelable {
         this.info = new BarInfoData();
         this.deals = deals;
         this.events = events;
+        this.favorite = false;
     }
 
     public BarData(String barName, String barListImage, String barProfileImage){
@@ -39,6 +41,7 @@ public class BarData implements Parcelable {
         this.info = new BarInfoData();
         this.deals = new ArrayList<>();
         this.events = new ArrayList<>();
+        this.favorite = false;
     }
 
     public BarData(String barName){
@@ -48,6 +51,7 @@ public class BarData implements Parcelable {
         this.info = new BarInfoData();
         this.deals = new ArrayList<>();
         this.events = new ArrayList<>();
+        this.favorite = false;
     }
 
     //Getters
@@ -88,7 +92,19 @@ public class BarData implements Parcelable {
         return events.get(position);
     }
 
+    public Boolean isFavorite(){
+        return favorite;
+    }
+
     //Setters
+
+    public void setBarListImage(String barListImage){
+        this.barListImage = barListImage;
+    }
+
+    public void setBarProfileImage(String barProfileImage){
+        this.barProfileImage = barProfileImage;
+    }
 
     public void setBarName(String barName){this.barName = barName;}
 
@@ -130,6 +146,14 @@ public class BarData implements Parcelable {
         }
     }
 
+    public void addToFavorites(){
+        favorite = true;
+    }
+
+    public void removeFromFavorites(){
+        favorite = false;
+    }
+
     /**
      * Generates an ArrayList of DealListItems from this bars deals.
      *
@@ -162,12 +186,15 @@ public class BarData implements Parcelable {
 
     //Parceling data
     private BarData(Parcel in) {
+        boolean[] fav = new boolean[1];
         this.barName = in.readString();
         this.barListImage = in.readString();
         this.barProfileImage = in .readString();
         this.info = in.readParcelable(BarInfoData.class.getClassLoader());
         this.deals = in.readArrayList(BarDealData.class.getClassLoader());
         this.events = in.readArrayList(BarEventData.class.getClassLoader());
+        in.readBooleanArray(fav);
+        this.favorite = fav[0];
     }
 
     public int describeContents(){
@@ -175,12 +202,15 @@ public class BarData implements Parcelable {
     }
 
     public void writeToParcel(Parcel out, int flags) {
+        boolean[] fav = new boolean[1];
+        fav[0] = this.favorite;
         out.writeString(this.barName);
         out.writeString(this.barListImage);
         out.writeString(this.barProfileImage);
         out.writeParcelable(this.info, flags);
         out.writeList(this.deals);
         out.writeList(this.events);
+        out.writeBooleanArray(fav);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

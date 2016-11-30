@@ -2,18 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="blackout.jester.BarProfileView.BarProfileActivity">
+    tools:context="blackout.jester.MainActivity">
 
     <item
         android:id="@+id/action_favorite"
         android:title="Favorite Bar"
-        app:showAsAction="always"/>
-    <!--android:icon="@drawable/ic_fav_empty_tinted"-->
-
-    <item
-        android:id="@+id/action_share"
-        android:title="Share Bar"
-        android:icon="@drawable/ic_share_tinted"
+        android:icon="@drawable/ic_filter_drop_down"
         app:showAsAction="always"/>
 
 </menu>
