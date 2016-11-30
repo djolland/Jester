@@ -12,9 +12,9 @@
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 
-    <!-- This style is used to set the back arrow in profile activity white -->
+    <!-- This style is used to set the color of the back arrow in bar profile activity -->
     <style name="ToolbarColoredIcons" parent="AppTheme">
-        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

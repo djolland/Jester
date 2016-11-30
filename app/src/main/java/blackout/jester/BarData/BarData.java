@@ -18,6 +18,7 @@ public class BarData implements Parcelable {
     private String barName;
     private String barListImage;
     private String barProfileImage;
+    private BarInfoData info;
     private ArrayList<BarDealData> deals;
     private ArrayList<BarEventData> events;
 
@@ -26,6 +27,7 @@ public class BarData implements Parcelable {
         this.barName = barName;
         this.barListImage = barListImage;
         this.barProfileImage = barProfileImage;
+        this.info = new BarInfoData();
         this.deals = deals;
         this.events = events;
     }
@@ -34,6 +36,7 @@ public class BarData implements Parcelable {
         this.barName = barName;
         this.barListImage = barListImage;
         this.barProfileImage = barProfileImage;
+        this.info = new BarInfoData();
         this.deals = new ArrayList<>();
         this.events = new ArrayList<>();
     }
@@ -42,6 +45,7 @@ public class BarData implements Parcelable {
         this.barName = barName;
         this.barListImage = "no_bar_list_image";
         this.barProfileImage = "no_bar_list_image";
+        this.info = new BarInfoData();
         this.deals = new ArrayList<>();
         this.events = new ArrayList<>();
     }
@@ -59,6 +63,8 @@ public class BarData implements Parcelable {
     public String getBarProfileImage() {
         return barProfileImage;
     }
+
+    public BarInfoData getInfo(){return info;}
 
     public ArrayList<BarDealData> getDeals() {
         return deals;
@@ -79,6 +85,18 @@ public class BarData implements Parcelable {
     //Setters
 
     public void setBarName(String barName){this.barName = barName;}
+
+    public void setAddress(String address){
+        this.info.setAddress(address);
+    }
+
+    public void setHours(String hours){
+        this.info.setHours(hours);
+    }
+
+    public void setContactInfo(String contactInfo){
+        this.info.setContact(contactInfo);
+    }
 
     public void addDeal(String description, BigDecimal price, DealType dealType, String date){
         deals.add(new BarDealData(description, price, dealType, date));
@@ -141,7 +159,8 @@ public class BarData implements Parcelable {
         this.barName = in.readString();
         this.barListImage = in.readString();
         this.barProfileImage = in .readString();
-        this.deals = in.readArrayList(BarDealData.class.getClassLoader()); //in.readParcelable(BarDealData.class.getClassLoader());
+        this.info = in.readParcelable(BarInfoData.class.getClassLoader());
+        this.deals = in.readArrayList(BarDealData.class.getClassLoader());
         this.events = in.readArrayList(BarEventData.class.getClassLoader());
     }
 
@@ -153,6 +172,7 @@ public class BarData implements Parcelable {
         out.writeString(this.barName);
         out.writeString(this.barListImage);
         out.writeString(this.barProfileImage);
+        out.writeParcelable(this.info, flags);
         out.writeList(this.deals);
         out.writeList(this.events);
     }

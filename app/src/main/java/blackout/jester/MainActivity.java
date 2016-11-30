@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
                             "social_house_list",
                             "social_house_profile"
         );
+        // * Adding Info
+        barSocialHouse.setAddress("2208 College St., Cedar Falls, IA");
+        barSocialHouse.setHours("Monday - Saturday: 4Pm - 2AM, Sunday: Closed");
+        barSocialHouse.setContactInfo("(319) 266-3662");
+
         // * Adding Deals
         barSocialHouse.addDeal("2 for 1 Mixed Drinks", new BigDecimal(4.00), DealType.MIXEDDRINK, "Today");
         barSocialHouse.addDeal("Domestic Beers", new BigDecimal(3.00), DealType.BEER, "Today");
