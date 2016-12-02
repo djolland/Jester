@@ -24,14 +24,15 @@ public class BarData implements Parcelable {
     private ArrayList<BarEventData> events;
 
     public BarData(String barName, String barListImage, String barProfileImage,
-                   ArrayList<BarDealData> deals, ArrayList<BarEventData> events){
+                   ArrayList<BarDealData> deals, ArrayList<BarEventData> events,
+                   BarInfoData barInfo, Boolean favorite){
         this.barName = barName;
         this.barListImage = barListImage;
         this.barProfileImage = barProfileImage;
-        this.info = new BarInfoData();
+        this.info = barInfo;
         this.deals = deals;
         this.events = events;
-        this.favorite = false;
+        this.favorite = favorite;
     }
 
     public BarData(String barName, String barListImage, String barProfileImage){
@@ -98,6 +99,8 @@ public class BarData implements Parcelable {
 
     //Setters
 
+    public void setBarName(String barName){this.barName = barName;}
+
     public void setBarListImage(String barListImage){
         this.barListImage = barListImage;
     }
@@ -105,8 +108,6 @@ public class BarData implements Parcelable {
     public void setBarProfileImage(String barProfileImage){
         this.barProfileImage = barProfileImage;
     }
-
-    public void setBarName(String barName){this.barName = barName;}
 
     public void setAddress(String address){
         this.info.setAddress(address);

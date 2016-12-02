@@ -34,7 +34,17 @@ public class MainActivity extends AppCompatActivity {
         View rootView = findViewById(R.id.main_container);
         barList = new ArrayList<>();
 
-        /** Generating Bars - Add New Bars Here **/
+        /** Add New Bars in this section.
+         *      - Be sure to add new bars to the barList at the end of this section.
+         *      - To add an image asset copy it in windows file explorer, then right click on
+         *        the res/drawable directory in the project view and paste. (yes it's that easy).
+         *          * Make sure the image is in the drawable directory!
+         *          * When instantiating a new bar you will reference the image by its file name
+         *            WITHOUT its file extension.
+         *          * Keep in mind that each bar will have 2 images, one that will appear on the
+         *            deal and events lists (this one is small and square) and another that will
+         *            appear in the bar profile view (this one can be larger and more detailed).
+         **/
 
         // Social House //
         BarData barSocialHouse =
@@ -60,11 +70,12 @@ public class MainActivity extends AppCompatActivity {
         // * Adding Deals
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
 
-        /** End of Bar Declarations */
 
-        // Add you bars to the barList! //
+        // !!! Add you bars to the barList !!! //
         barList.add(barSocialHouse);
         barList.add(barBlankBar);
+
+        /** End of Adding New Bars Section */
 
         // Generating the Deals and Events List for the main Tabs //
         ArrayList<DealListItem> dealListItems = new ArrayList<>();
