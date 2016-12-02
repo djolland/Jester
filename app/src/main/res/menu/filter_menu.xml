@@ -7,7 +7,7 @@
     <item
         android:id="@+id/filter_top"
         android:title="Filter"
-        android:icon="@drawable/ic_filter_expand_action_bar"
+        android:icon="@drawable/ic_filter_menu_action_bar"
         app:showAsAction="always">
         <menu android:id="@+id/filter_drop_down_placeholder">
             <item

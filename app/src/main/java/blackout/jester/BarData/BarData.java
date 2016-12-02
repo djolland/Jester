@@ -146,11 +146,11 @@ public class BarData implements Parcelable {
         }
     }
 
-    public void addToFavorites(){
+    public void setAsFavorite(){
         favorite = true;
     }
 
-    public void removeFromFavorites(){
+    public void setNotFavorite(){
         favorite = false;
     }
 

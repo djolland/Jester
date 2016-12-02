@@ -4,7 +4,6 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 
@@ -26,14 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomBar mBottomBar;
     private Menu filterMenu;
+    private ArrayList<BarData> barList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         View rootView = findViewById(R.id.main_container);
+        barList = new ArrayList<>();
 
-        /** Generating Bars **/
+        /** Generating Bars - Add New Bars Here **/
 
         // Social House //
         BarData barSocialHouse =
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         barSocialHouse.addEvent("DJ Sumptin", "8:00PM", "Today", new BigDecimal(0.00));
         barSocialHouse.addEvent("Lady Googa", "7:00PM", "Tomorrow", new BigDecimal(10.00));
 
-        barSocialHouse.addToFavorites(); // Testing favorites.
+        barSocialHouse.setAsFavorite(); // Testing favorites.
 
         // Blank Bar //
         BarData barBlankBar = new BarData("Blank Bar");
@@ -61,15 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
         /** End of Bar Declarations */
 
-        // Generating the Deals List for the main Deals Tab !! ADD YOU BAR HERE !! //
-        ArrayList<DealListItem> dealListItems = new ArrayList<>();
-        dealListItems.addAll(barSocialHouse.generateDealList());
-        dealListItems.addAll(barBlankBar.generateDealList());
+        // Add you bars to the barList! //
+        barList.add(barSocialHouse);
+        barList.add(barBlankBar);
 
-        // Generating the Events List for the main Events Tab !! ADD YOUR BAR HERE !! //
+        // Generating the Deals and Events List for the main Tabs //
+        ArrayList<DealListItem> dealListItems = new ArrayList<>();
         ArrayList<EventListItem> eventListItems = new ArrayList<>();
-        eventListItems.addAll(barSocialHouse.generateEventList());
-        eventListItems.addAll(barBlankBar.generateEventList());
+        for (BarData bar : barList){
+            dealListItems.addAll(bar.generateDealList());
+            eventListItems.addAll(bar.generateEventList());
+        }
 
         // Bundling Deal and Event lists to pass to fragments
         Bundle dealsBundle = new Bundle();
@@ -116,10 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        android.support.v7.app.ActionBar ab = getSupportActionBar();
-        ab.isHideOnContentScrollEnabled();
-
     }
 
     @Override

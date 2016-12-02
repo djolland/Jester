@@ -74,12 +74,12 @@ public class BarProfileActivity extends AppCompatActivity {
             case R.id.action_favorite:
                 // User chose the "Favorite" icon
                 if (thisBar.isFavorite()) {
-                    thisBar.removeFromFavorites();
+                    thisBar.setNotFavorite();
                     profileMenu.findItem(R.id.action_favorite)
                             .setIcon(R.drawable.ic_fav_empty_action_bar);
                 }
                 else{
-                    thisBar.addToFavorites();
+                    thisBar.setAsFavorite();
                     profileMenu.findItem(R.id.action_favorite)
                             .setIcon(R.drawable.ic_fav_true_action_bar);
                 }
