@@ -71,11 +71,40 @@ public class MainActivity extends AppCompatActivity {
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
 
 
-        // !!! Add you bars to the barList !!! //
+        // !!! Add your bars to the barList !!! //
         barList.add(barSocialHouse);
         barList.add(barBlankBar);
 
         /** End of Adding New Bars Section */
+
+        // Setting up Bottom Bar navigation
+        mBottomBar = BottomBar.attach(this, savedInstanceState);
+        mBottomBar.setMaxFixedTabs(4); //Default is 3, when this number is exceeded the bottombar
+        //changes styles. we don't want that happening.
+        mBottomBar.setItems(R.menu.bottombar_menu);
+
+        // Drawing screen with declared bar data.
+        updateScreen();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.filter_menu, menu);
+        this.filterMenu = menu;
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mBottomBar.onSaveInstanceState(outState);
+    }
+
+    /**
+     * Call this if data in the barList has been updated.
+     */
+    private void updateScreen(){
 
         // Generating the Deals and Events List for the main Tabs //
         ArrayList<DealListItem> dealListItems = new ArrayList<>();
@@ -98,11 +127,6 @@ public class MainActivity extends AppCompatActivity {
         eventsFragment.setArguments(eventBundle);
         final Fragment mapFragment = new MapFragment();
 
-        // Setting up Bottom Bar navigation
-        mBottomBar = BottomBar.attach(this, savedInstanceState);
-        mBottomBar.setMaxFixedTabs(4); //Default is 3, when this number is exceeded the bottombar
-                                       //changes styles. we don't want that happening.
-        mBottomBar.setItems(R.menu.bottombar_menu);
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
@@ -132,18 +156,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.filter_menu, menu);
-        this.filterMenu = menu;
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mBottomBar.onSaveInstanceState(outState);
+    /**
+     * This method is to be called from all child fragments if a bars data needs to be updated.
+     *
+     * @param updatedBar Updated bar data
+     */
+    public void updateBarData(BarData updatedBar){
+        for (BarData bar : barList){
+            if (bar.getBarName().equalsIgnoreCase(updatedBar.getBarName())){
+                barList.set(barList.indexOf(bar), updatedBar);
+            }
+        }
+        updateScreen();
     }
 
 }

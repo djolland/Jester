@@ -1,5 +1,6 @@
 package blackout.jester.BarProfileView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import blackout.jester.BarData.BarData;
+import blackout.jester.DealsTab.DealsFragment;
+import blackout.jester.MainActivity;
 import blackout.jester.R;
 
 public class BarProfileActivity extends AppCompatActivity {
@@ -22,7 +25,6 @@ public class BarProfileActivity extends AppCompatActivity {
         View rootView = findViewById(R.id.bar_profile_container);
 
         Bundle args = getIntent().getExtras();
-
         thisBar = args.getParcelable("thisBar");
 
         if (savedInstanceState == null) {
@@ -48,6 +50,11 @@ public class BarProfileActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle(thisBar.getBarName());
 
+        // Setting up return data -
+        // so when user changes bar favorite status it will feed back to main
+        Intent output = new Intent();
+        output.putExtra("result", thisBar);
+        setResult(RESULT_OK, output);
     }
 
     @Override

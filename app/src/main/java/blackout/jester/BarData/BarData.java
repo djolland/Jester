@@ -20,6 +20,7 @@ public class BarData implements Parcelable {
     private String barProfileImage;
     private Boolean favorite;
     private BarInfoData info;
+    //distance int
     private ArrayList<BarDealData> deals;
     private ArrayList<BarEventData> events;
 
