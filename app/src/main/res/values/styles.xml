@@ -12,9 +12,25 @@
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 
+    <style name="MainActivityTheme" parent="AppTheme">
+        <!-- Will set main activity title color -->
+        <item name="titleTextColor">@color/colorAccent</item>
+    </style>
+
     <!-- This style is used to set the color of the back arrow in bar profile activity -->
     <style name="ToolbarColoredIcons" parent="AppTheme">
         <item name="android:textColorSecondary">@color/colorAccent</item>
+    </style>
+
+    <!-- This style will cause filter menu to appear below action bar -->
+    <style name="FilterMenu" parent="Widget.AppCompat.PopupMenu.Overflow" >
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <!-- Will define the style for menu buttons on action bars -->
+    <style name="myActionButtonStyle" parent="Widget.AppCompat.ActionButton">
+        <item name="android:minWidth">100dp</item>
+        <item name="android:width">100dp</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

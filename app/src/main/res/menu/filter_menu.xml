@@ -5,9 +5,22 @@
     tools:context="blackout.jester.MainActivity">
 
     <item
-        android:id="@+id/action_favorite"
-        android:title="Favorite Bar"
-        android:icon="@drawable/ic_filter_drop_down"
-        app:showAsAction="always"/>
+        android:id="@+id/filter_top"
+        android:title="Filter"
+        android:icon="@drawable/ic_filter_expand_action_bar"
+        app:showAsAction="always">
+        <menu android:id="@+id/filter_drop_down_placeholder">
+            <item
+                android:id="@+id/filter_drink_type_beer"
+                android:title="Drink Type - Beer"
+                android:icon="@drawable/ic_filter_select_empty_tinted"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/filter_drink_price_lowest"
+                android:title="Drink Price - Lowest"
+                android:icon="@drawable/ic_filter_select_empty_tinted"
+                app:showAsAction="ifRoom"/>
+        </menu>
+    </item>
 
 </menu>

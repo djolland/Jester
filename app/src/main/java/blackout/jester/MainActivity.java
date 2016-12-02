@@ -4,6 +4,9 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.View;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
@@ -12,8 +15,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import blackout.jester.BarData.BarData;
-import blackout.jester.BarData.BarDealData;
-import blackout.jester.BarData.BarEventData;
 import blackout.jester.BarData.DealType;
 import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.DealsTab.DealsFragment;
@@ -24,12 +25,13 @@ import blackout.jester.MapTab.MapFragment;
 public class MainActivity extends AppCompatActivity {
 
     private BottomBar mBottomBar;
-    //private BarData barSocialHouse;
+    private Menu filterMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        View rootView = findViewById(R.id.main_container);
 
         /** Generating Bars **/
 
@@ -50,19 +52,21 @@ public class MainActivity extends AppCompatActivity {
         barSocialHouse.addEvent("DJ Sumptin", "8:00PM", "Today", new BigDecimal(0.00));
         barSocialHouse.addEvent("Lady Googa", "7:00PM", "Tomorrow", new BigDecimal(10.00));
 
-        barSocialHouse.addToFavorites();
+        barSocialHouse.addToFavorites(); // Testing favorites.
 
         // Blank Bar //
         BarData barBlankBar = new BarData("Blank Bar");
         // * Adding Deals
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
 
-        // Generating the Deals List for the main Deals Tab//
+        /** End of Bar Declarations */
+
+        // Generating the Deals List for the main Deals Tab !! ADD YOU BAR HERE !! //
         ArrayList<DealListItem> dealListItems = new ArrayList<>();
         dealListItems.addAll(barSocialHouse.generateDealList());
         dealListItems.addAll(barBlankBar.generateDealList());
 
-        // Generating the Events List for the main Events Tab//
+        // Generating the Events List for the main Events Tab !! ADD YOUR BAR HERE !! //
         ArrayList<EventListItem> eventListItems = new ArrayList<>();
         eventListItems.addAll(barSocialHouse.generateEventList());
         eventListItems.addAll(barBlankBar.generateEventList());
@@ -90,17 +94,17 @@ public class MainActivity extends AppCompatActivity {
             public void onMenuTabSelected(@IdRes int menuItemId) {
                 if (menuItemId == R.id.bb_menu_deals) {
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, dealsFragment)
+                            .replace(R.id.main_container, dealsFragment)
                             .commit();
                 }
                 else if (menuItemId == R.id.bb_menu_events) {
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, eventsFragment)
+                            .replace(R.id.main_container, eventsFragment)
                             .commit();
                 }
                 else if (menuItemId == R.id.bb_menu_map) {
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, mapFragment)
+                            .replace(R.id.main_container, mapFragment)
                             .commit();
                 }
             }
@@ -112,6 +116,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.isHideOnContentScrollEnabled();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.filter_menu, menu);
+        this.filterMenu = menu;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

@@ -56,10 +56,10 @@ public class BarProfileActivity extends AppCompatActivity {
         this.profileMenu = menu;
         getMenuInflater().inflate(R.menu.profile_menu, menu);
         if (thisBar.isFavorite()) {
-            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_fav_full_tinted);
+            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_fav_true_action_bar);
         }
         else{
-            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_fav_empty_tinted);
+            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_fav_empty_action_bar);
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -76,12 +76,12 @@ public class BarProfileActivity extends AppCompatActivity {
                 if (thisBar.isFavorite()) {
                     thisBar.removeFromFavorites();
                     profileMenu.findItem(R.id.action_favorite)
-                            .setIcon(R.drawable.ic_fav_empty_tinted);
+                            .setIcon(R.drawable.ic_fav_empty_action_bar);
                 }
                 else{
                     thisBar.addToFavorites();
                     profileMenu.findItem(R.id.action_favorite)
-                            .setIcon(R.drawable.ic_fav_full_tinted);
+                            .setIcon(R.drawable.ic_fav_true_action_bar);
                 }
                 return true;
 

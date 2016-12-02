@@ -41,7 +41,7 @@ public class DealsFragment extends Fragment {
         // Get a reference to the ListView, and attach this adapter to it.
         mListView = (ListView) rootView.findViewById(R.id.listview_deals);
         mListView.setAdapter(mDealsAdapter);
-        // We'll call our MainActivity
+        // Calling the Bar Profile Activity
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

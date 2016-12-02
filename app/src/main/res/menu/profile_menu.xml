@@ -8,12 +8,11 @@
         android:id="@+id/action_favorite"
         android:title="Favorite Bar"
         app:showAsAction="always"/>
-    <!--android:icon="@drawable/ic_fav_empty_tinted"-->
 
     <item
         android:id="@+id/action_share"
         android:title="Share Bar"
-        android:icon="@drawable/ic_share_tinted"
+        android:icon="@drawable/ic_share_action_bar"
         app:showAsAction="always"/>
 
 </menu>
