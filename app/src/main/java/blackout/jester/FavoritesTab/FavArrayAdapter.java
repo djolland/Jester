@@ -1,4 +1,4 @@
-package blackout.jester.DealsTab;
+package blackout.jester.FavoritesTab;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,31 +10,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import blackout.jester.BarData.BarData;
+import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.R;
 
 /**
- * Created by djoll on 11/16/2016.
+ * Created by djoll on 12/3/2016.
  */
 
-public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
+public class FavArrayAdapter extends ArrayAdapter<BarData> {
 
     private Context context;
-    private ArrayList<DealListItem> dealList;
+    private ArrayList<BarData> favList;
 
-    public DealArrayAdapter(Context context, int resource, ArrayList<DealListItem> objects){
+    public FavArrayAdapter(Context context, int resource, ArrayList<BarData> objects) {
         super(context, resource, objects);
 
         this.context = context;
-        this.dealList = objects;
+        this.favList = objects;
+
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
         //get the deal item we are dispalying
-        DealListItem dealListItem = dealList.get(position);
+        BarData favBar = favList.get(position);
 
         //inflate the layout for each item
         LayoutInflater inflater =
@@ -45,11 +47,11 @@ public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
         ImageView barImage = (ImageView) view.findViewById(R.id.bar_image);
 
         //display deal text... may need to trim this up.
-        dealText.setText(dealListItem.getDealTabText());
+        dealText.setText(favBar.getBarName());
 
         //Getting image resource
         int imageID = context.getResources()
-                .getIdentifier(dealListItem.getBarImage(), "drawable", context.getPackageName());
+                .getIdentifier(favBar.getBarListImage(), "drawable", context.getPackageName());
         barImage.setImageResource(imageID);
 
         return view;
