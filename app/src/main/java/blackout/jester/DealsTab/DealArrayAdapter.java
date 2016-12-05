@@ -21,7 +21,7 @@ import blackout.jester.R;
 public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
 
     private Context context;
-    private List<DealListItem> dealList;
+    private ArrayList<DealListItem> dealList;
 
     public DealArrayAdapter(Context context, int resource, ArrayList<DealListItem> objects){
         super(context, resource, objects);

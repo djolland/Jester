@@ -19,6 +19,7 @@ import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.DealsTab.DealsFragment;
 import blackout.jester.EventsTab.EventListItem;
 import blackout.jester.EventsTab.EventsFragment;
+import blackout.jester.FavoritesTab.FavoritesFragment;
 import blackout.jester.MapTab.MapFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -104,16 +105,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Call this if data in the barList has been updated.
+     * This method is called from updateBarData and onCreate.
      */
     private void updateScreen(){
 
         // Generating the Deals and Events List for the main Tabs //
         ArrayList<DealListItem> dealListItems = new ArrayList<>();
         ArrayList<EventListItem> eventListItems = new ArrayList<>();
+        ArrayList<BarData> favBarList = new ArrayList<>();
         for (BarData bar : barList){
             dealListItems.addAll(bar.generateDealList());
             eventListItems.addAll(bar.generateEventList());
+            if (bar.isFavorite()){
+                favBarList.add(bar);
+            }
         }
 
         // Bundling Deal and Event lists to pass to fragments
@@ -121,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
         dealsBundle.putParcelableArrayList("deals",dealListItems);
         Bundle eventBundle = new Bundle();
         eventBundle.putParcelableArrayList("events",eventListItems);
+        Bundle favBundle = new Bundle();
+        favBundle.putParcelableArrayList("favorites", favBarList);
 
         // Instantiating Fragments
         final Fragment dealsFragment = new DealsFragment();
@@ -128,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
         final Fragment eventsFragment = new EventsFragment();
         eventsFragment.setArguments(eventBundle);
         final Fragment mapFragment = new MapFragment();
+        // Set map args
+        final Fragment favFragment = new FavoritesFragment();
+        favFragment.setArguments(favBundle);
 
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
             @Override
@@ -145,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
                 else if (menuItemId == R.id.bb_menu_map) {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.main_container, mapFragment)
+                            .commit();
+                }
+                else if (menuItemId == R.id.bb_menu_favorites) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_container, favFragment)
                             .commit();
                 }
             }
