@@ -5,5 +5,5 @@ package blackout.jester.BarData;
  */
 
 public enum DealType{
-    BEER, MIXEDDRINK
+    BEER, MIXEDDRINK, SHOTS, OTHER
 }

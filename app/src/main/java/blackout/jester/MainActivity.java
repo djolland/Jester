@@ -20,6 +20,7 @@ import blackout.jester.DealsTab.DealsFragment;
 import blackout.jester.EventsTab.EventListItem;
 import blackout.jester.EventsTab.EventsFragment;
 import blackout.jester.FavoritesTab.FavoritesFragment;
+import blackout.jester.Filter.FilterClass;
 import blackout.jester.MapTab.MapFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -120,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
                 favBarList.add(bar);
             }
         }
+
+        // TESTING FILTER!!
+        ArrayList<DealType> filterType = new ArrayList<>();
+        filterType.add(DealType.BEER);
+        dealListItems = FilterClass.filterByDeal(dealListItems,filterType);
 
         // Bundling Deal and Event lists to pass to fragments
         Bundle dealsBundle = new Bundle();
