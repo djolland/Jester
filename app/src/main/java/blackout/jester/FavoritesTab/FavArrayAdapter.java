@@ -12,7 +12,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import blackout.jester.BarData.BarData;
-import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.R;
 
 /**
@@ -35,19 +34,25 @@ public class FavArrayAdapter extends ArrayAdapter<BarData> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
-        //get the deal item we are dispalying
+        //get the bar we are displaying
         BarData favBar = favList.get(position);
 
         //inflate the layout for each item
         LayoutInflater inflater =
                 (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.deal_item_layout, null);
+        View view = inflater.inflate(R.layout.favorite_item_layout, null);
 
-        TextView dealText = (TextView) view.findViewById(R.id.deal_text);
         ImageView barImage = (ImageView) view.findViewById(R.id.bar_image);
+        TextView barNameText = (TextView) view.findViewById(R.id.bar_name);
+        TextView dealsText = (TextView) view.findViewById(R.id.deal_number);
+        TextView eventText = (TextView) view.findViewById(R.id.event_number);
+        TextView hoursText = (TextView) view.findViewById(R.id.bar_hours);
 
-        //display deal text... may need to trim this up.
-        dealText.setText(favBar.getBarName());
+        //Set text fields
+        barNameText.setText(favBar.getBarName());
+        dealsText.setText("Deals: " + favBar.getDeals().size());
+        eventText.setText("Events: " + favBar.getEvents().size());
+        hoursText.setText(favBar.getHours());
 
         //Getting image resource
         int imageID = context.getResources()

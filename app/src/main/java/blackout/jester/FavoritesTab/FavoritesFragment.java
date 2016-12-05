@@ -35,7 +35,7 @@ public class FavoritesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.deals_layout, container, false);
+        View rootView = inflater.inflate(R.layout.favorites_layout, container, false);
         mainActivity = (MainActivity) getActivity();
 
         // Getting Fav Bar List Data
@@ -44,7 +44,7 @@ public class FavoritesFragment extends Fragment {
         mFavAdpater = new FavArrayAdapter(this.getContext(), 0, barFavList);
 
         // Get a reference to the ListView, and attach this adapter to it.
-        mListView = (ListView) rootView.findViewById(R.id.listview_deals);
+        mListView = (ListView) rootView.findViewById(R.id.listview_favorites);
         mListView.setAdapter(mFavAdpater);
         // Calling the Bar Profile Activity
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
