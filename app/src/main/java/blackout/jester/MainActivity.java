@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import blackout.jester.BarData.BarData;
 import blackout.jester.BarData.DealType;
+import blackout.jester.BarData.EventType;
 import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.DealsTab.DealsFragment;
 import blackout.jester.EventsTab.EventListItem;
@@ -62,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         barSocialHouse.addDeal("2 for 1 Mixed Drinks", new BigDecimal(4.00), DealType.MIXEDDRINK, "Today");
         barSocialHouse.addDeal("Domestic Beers", new BigDecimal(3.00), DealType.BEER, "Today");
         // * Adding Events
-        barSocialHouse.addEvent("DJ Sumptin", "8:00PM", "Today", new BigDecimal(0.00));
-        barSocialHouse.addEvent("Lady Googa", "7:00PM", "Tomorrow", new BigDecimal(10.00));
+        barSocialHouse.addEvent("DJ Sumptin", "8:00PM", "Today",EventType.LIVEMUSIC, new BigDecimal(0.00));
+        barSocialHouse.addEvent("Lady Googa", "7:00PM", "Tomorrow", EventType.LIVEMUSIC, new BigDecimal(10.00));
 
         barSocialHouse.setAsFavorite(); // Testing favorites.
 
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         BarData barBlankBar = new BarData("Blank Bar");
         // * Adding Deals
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
-        barBlankBar.addEvent("Kareoke", "12:00am-1:00pm", "25th Dec.", new BigDecimal(10.00));
+        barBlankBar.addEvent("Kareoke", "12:00am-1:00pm", "25th Dec.", EventType.KARAOKE, new BigDecimal(10.00));
 
 
 
@@ -123,9 +124,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // TESTING FILTER!!
-        ArrayList<DealType> filterType = new ArrayList<>();
-        filterType.add(DealType.BEER);
-        dealListItems = FilterClass.filterByDeal(dealListItems,filterType);
+        ArrayList<EventType> filterType = new ArrayList<>();
+        filterType.add(EventType.KARAOKE);
+        eventListItems = FilterClass.filterByEvent(eventListItems,filterType);
+
 
         // Bundling Deal and Event lists to pass to fragments
         Bundle dealsBundle = new Bundle();

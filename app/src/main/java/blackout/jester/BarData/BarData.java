@@ -136,8 +136,8 @@ public class BarData implements Parcelable {
         }
     }
 
-    public void addEvent (String description, String time, String date, BigDecimal coverCharge){
-        events.add(new BarEventData(description, time, date, coverCharge));
+    public void addEvent (String description, String time, String date, EventType eventType, BigDecimal coverCharge){
+        events.add(new BarEventData(description, time, date, eventType, coverCharge));
     }
 
     public void addEvent (BarEventData eventData){events.add(eventData);}

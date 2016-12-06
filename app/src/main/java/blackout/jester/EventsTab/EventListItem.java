@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import blackout.jester.BarData.BarData;
 import blackout.jester.BarData.BarEventData;
+import blackout.jester.BarData.DealType;
+import blackout.jester.BarData.EventType;
 
 /**
  * Encapsulates all data needed to display an Event in any of the available lists.
@@ -19,11 +21,13 @@ public class EventListItem implements Parcelable {
     private String barName;
     private String eventTabText;
     private String profileEventText;
+    private EventType eventType;
 
     public EventListItem(BarData barData, int eventPosition){
         this.barData = barData;
         this.barImage = barData.getBarListImage();
         this.barName = barData.getBarName();
+        this.eventType = barData.getEvent(eventPosition).getEventType();
 
         BarEventData event = this.barData.getEvent(eventPosition);
         // Constructing the deal text that will appear in the main Deal Tab List
@@ -40,6 +44,7 @@ public class EventListItem implements Parcelable {
     public String getBarName(){return barName;}
     public String getEventTabText(){return eventTabText;}
     public String getProfileEventText(){return profileEventText;}
+    public EventType getEventType() {return eventType;}
 
     // Parceling data
     private EventListItem(Parcel in) {
@@ -51,6 +56,7 @@ public class EventListItem implements Parcelable {
         this.barName = data[1];
         this.eventTabText = data[2];
         this.profileEventText = data[3];
+        this.eventType = EventType.valueOf(in.readString());
     }
 
     public int describeContents(){
@@ -64,6 +70,7 @@ public class EventListItem implements Parcelable {
                 this.barName,
                 this.eventTabText,
                 this.profileEventText});
+        out.writeString(eventType.name());
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
