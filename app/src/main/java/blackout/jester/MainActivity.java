@@ -123,11 +123,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // TESTING FILTER!!
-        ArrayList<EventType> filterType = new ArrayList<>();
-        filterType.add(EventType.KARAOKE);
-        eventListItems = FilterClass.filterByEvent(eventListItems,filterType);
-
 
         // Bundling Deal and Event lists to pass to fragments
         Bundle dealsBundle = new Bundle();
