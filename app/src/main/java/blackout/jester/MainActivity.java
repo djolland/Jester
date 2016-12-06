@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
         BarData barBlankBar = new BarData("Blank Bar");
         // * Adding Deals
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
+
         barBlankBar.addEvent("Kareoke", "12:00am-1:00pm", "25th Dec.", EventType.KARAOKE, new BigDecimal(10.00));
+
 
 
 
