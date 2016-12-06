@@ -10,17 +10,13 @@
     <CalendarView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:id="@+id/calendarView"
         android:layout_alignParentStart="true"
+        android:id="@+id/calendarView"
         android:layout_alignParentEnd="true"
-        style="@android:style/Widget.Holo.Light.CalendarView"
-        android:showWeekNumber="false"
-        android:selectedWeekBackgroundColor="?android:attr/textColorHighlight"
-        android:weekNumberColor="@color/colorPrimary"
-        android:weekSeparatorLineColor="@color/colorAccent"
-        android:focusedMonthDateColor="@color/colorPrimary"
-        android:contextClickable="true"
         android:clickable="true"
-        android:selectedDateVerticalBar="@color/colorPrimary" />
+        android:focusedMonthDateColor="@color/colorPrimary"
+        android:selectedWeekBackgroundColor="@color/colorAccent"
+        android:showWeekNumber="false"
+        style="@android:style/Widget.DeviceDefault.CalendarView"
+        android:unfocusedMonthDateColor="@android:color/darker_gray" />
 </RelativeLayout>
