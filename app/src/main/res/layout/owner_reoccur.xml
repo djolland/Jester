@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+    <CheckBox
+        android:text="Thursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxThursday"
+        android:textColor="?attr/colorPrimary"
+        style="@android:style/Widget.CompoundButton.CheckBox"
+        app:buttonTint="?attr/colorPrimary"
+        android:layout_below="@+id/checkBoxWednesday"
+        android:layout_alignStart="@id/checkBoxWednesday"/>
+
+    <CheckBox
+        android:text="Friday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxFriday"
+        android:textColor="?attr/colorPrimary"
+        style="@android:style/Widget.CompoundButton.CheckBox"
+        app:buttonTint="?attr/colorPrimary"
+        android:layout_below="@+id/checkBoxThursday"
+        android:layout_alignStart="@id/checkBoxThursday"/>
+
+    <CheckBox
+        android:text="Saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxSaturday"
+        android:textColor="?attr/colorPrimary"
+        style="@android:style/Widget.CompoundButton.CheckBox"
+        app:buttonTint="?attr/colorPrimary"
+        android:layout_below="@+id/checkBoxFriday"
+        android:layout_alignStart="@id/checkBoxFriday"/>
+
+    <CheckBox
+        android:text="Sunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxSunday"
+        android:textColor="?attr/colorPrimary"
+        style="@android:style/Widget.CompoundButton.CheckBox"
+        app:buttonTint="?attr/colorPrimary"
+        android:layout_below="@+id/checkBoxSaturday"
+        android:layout_alignStart="@+id/checkBoxSaturday" />
+
+    <CheckBox
+        android:text="Tuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxTuesday"
+        android:textColor="?attr/colorPrimary"
+        style="@android:style/Widget.CompoundButton.CheckBox"
+        app:buttonTint="?attr/colorPrimary"
+        android:layout_below="@+id/checkBoxMonday"
+        android:layout_alignStart="@+id/checkBoxMonday" />
+
+    <CheckBox
+        android:text="Wednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxWednesday"
+        android:textColor="?attr/colorPrimary"
+        style="@android:style/Widget.CompoundButton.CheckBox"
+        app:buttonTint="?attr/colorPrimary"
+        android:layout_below="@+id/checkBoxTuesday"
+        android:layout_alignStart="@+id/checkBoxTuesday" />
+
+    <CheckBox
+        android:text="Monday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBoxMonday"
+        android:textColor="?attr/colorPrimary"
+        style="@android:style/Widget.CompoundButton.CheckBox"
+        app:buttonTint="?attr/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker3"
+        android:datePickerMode="spinner"
+        android:headerBackground="?attr/colorPrimary"
+        style="@android:style/Widget.DatePicker"
+        android:layout_alignTop="@+id/checkBoxTuesday"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Start Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_above="@+id/datePicker3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:text="End Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:id="@+id/textView3"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/checkBoxSunday"
+        android:layout_alignParentEnd="true" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startDatePicker"
+        android:datePickerMode="spinner"
+        android:headerBackground="?attr/colorPrimary"
+        style="@android:style/Widget.DatePicker"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+
+    <TextView
+        android:text="Add Calendar Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/addLabel"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/titleBox"
+        android:layout_below="@+id/addLabel"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="?attr/colorPrimary"
+        style="@android:style/Widget.AutoCompleteTextView"
+        android:hint="Enter Title..." />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:layout_below="@+id/datePicker"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="17dp"
+        android:id="@+id/startTimeBox"
+        android:textColor="?attr/colorPrimary"
+        android:hint="Start Time..." />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:ems="10"
+        android:layout_below="@+id/startTimeBox"
+        android:layout_alignParentStart="true"
+        android:id="@+id/endTimeBox"
+        android:textColor="?attr/colorPrimary"
+        android:hint="End Time..." />
+
+    <TextView
+        android:text="Select Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleBox"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView2"
+        android:textColor="?attr/colorPrimary" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        style="@android:style/Widget.DatePicker"
+        android:headerBackground="?attr/colorPrimary"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:text="Reocurring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reoccurringCheck"
+        style="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox"
+        android:textColor="?attr/colorPrimary"
+        app:buttonTint="?attr/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/endTimeBox"
+        android:layout_alignStart="@+id/addLabel"
+        android:layout_marginTop="59dp"
+        android:onClick="reocurChecked" />
+
+</RelativeLayout>
