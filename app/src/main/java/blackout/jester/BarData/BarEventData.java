@@ -1,5 +1,6 @@
 package blackout.jester.BarData;
 
+import android.app.usage.UsageEvents;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,13 +15,15 @@ public class BarEventData implements Parcelable{
     private String description;
     private String time;
     private String date;
+    private EventType eventType;
     private BigDecimal coverCharge;
-    //recurrance
+    //recurrence
 
-    public BarEventData(String description, String time, String date, BigDecimal coverCharge){
+    public BarEventData(String description, String time, String date, EventType aEventType, BigDecimal coverCharge){
         this.description = description;
         this.time = time;
         this.date = date;
+        this.eventType = aEventType;
         this.coverCharge = coverCharge;
     }
 
@@ -38,6 +41,8 @@ public class BarEventData implements Parcelable{
         return date;
     }
 
+    public EventType getEventType() {return eventType;}
+
     public BigDecimal getCoverCharge(){
         return coverCharge;
     }
@@ -47,6 +52,7 @@ public class BarEventData implements Parcelable{
         this.description = in.readString();
         this.time = in.readString();
         this.date = in.readString();
+        this.eventType = EventType.valueOf(in.readString());
         this.coverCharge = new BigDecimal(in.readString());
     }
 
@@ -58,6 +64,7 @@ public class BarEventData implements Parcelable{
         out.writeString(this.description);
         out.writeString(this.date);
         out.writeString(this.time);
+        out.writeString(this.eventType.name());
         out.writeString(this.coverCharge.toString());
     }
 
