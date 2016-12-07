@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import blackout.jester.BarData.BarData;
+import blackout.jester.BarData.DealType;
 
 /**
  * Encapsulates all data needed to display a Deal in any of the available lists.
@@ -18,12 +19,13 @@ public class DealListItem implements Parcelable {
     private String barName;
     private String dealTabText;
     private String profileDealText;
+    private DealType dealType;
 
     public DealListItem(BarData barData, int dealPosition){
         this.barData = barData;
         this.barImage = barData.getBarListImage();
         this.barName = barData.getBarName();
-
+        this.dealType = barData.getDeal(dealPosition).getDealType();
         // Constructing the deal text that will appear in the main Deal Tab List
         this.dealTabText = barData.getDeal(dealPosition)
                 .getDescription() +
@@ -41,6 +43,7 @@ public class DealListItem implements Parcelable {
     public String getBarName(){return barName;}
     public String getDealTabText(){return dealTabText;}
     public String getProfileDealText(){return profileDealText;}
+    public DealType getDealType(){return dealType;}
 
     // Parceling data
     private DealListItem(Parcel in) {
@@ -51,6 +54,7 @@ public class DealListItem implements Parcelable {
         this.barImage = data[0];
         this.barName = data[1];
         this.dealTabText = data[2];
+        this.dealType = DealType.valueOf(in.readString());
     }
 
     public int describeContents(){
@@ -63,6 +67,7 @@ public class DealListItem implements Parcelable {
                 this.barImage,
                 this.barName,
                 this.dealTabText});
+        out.writeString(dealType.name());
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
