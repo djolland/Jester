@@ -45,6 +45,7 @@ public class EventsFragment extends Fragment {
         // Get a reference to the ListView, and attach this adapter to it.
         mListView = (ListView) rootView.findViewById(R.id.listview_events);
         mListView.setAdapter(mEventsAdapter);
+
         // Calling the Bar Profile Activity
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

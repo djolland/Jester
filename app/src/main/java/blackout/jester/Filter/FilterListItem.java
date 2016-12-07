@@ -9,23 +9,28 @@ import blackout.jester.BarData.DealType;
  * Created by djolland on 12/6/2016.
  */
 
-public class FilterDealItem implements Parcelable{
+public class FilterListItem implements Parcelable{
 
-    private DealType dealType;
+    private Enum filterType;
     private Boolean isChecked;
 
-    public FilterDealItem(DealType dealType, Boolean isChecked){
-        this.dealType = dealType;
+    public FilterListItem(Enum filterType, Boolean isChecked){
+        this.filterType = filterType;
         this.isChecked = isChecked;
      }
 
     // Getters
-    public DealType getDealType(){return dealType;};
+    public Enum getFilterType(){return filterType;};
     public Boolean getIsChecked(){return isChecked;}
 
+    // Setters
+    public void setIsChecked(Boolean bool){
+        isChecked = bool;
+    }
+
     // Parceling data
-    private FilterDealItem(Parcel in) {
-        this.dealType = DealType.valueOf(in.readString());
+    private FilterListItem(Parcel in) {
+        this.filterType = DealType.valueOf(in.readString());
         boolean[] boolIn = new boolean[1];
         in.readBooleanArray(boolIn);
         this.isChecked = boolIn[0];
@@ -36,19 +41,19 @@ public class FilterDealItem implements Parcelable{
     }
 
     public void writeToParcel(Parcel out, int flags) {
-        out.writeString(this.dealType.name());
+        out.writeString(this.filterType.name());
         boolean[] boolOut = new boolean[1];
         boolOut[0] = this.isChecked;
         out.writeBooleanArray(boolOut);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
-        public FilterDealItem createFromParcel(Parcel in) {
-            return new FilterDealItem(in);
+        public FilterListItem createFromParcel(Parcel in) {
+            return new FilterListItem(in);
         }
 
-        public FilterDealItem[] newArray(int size) {
-            return new FilterDealItem[size];
+        public FilterListItem[] newArray(int size) {
+            return new FilterListItem[size];
         }
     };
 }
