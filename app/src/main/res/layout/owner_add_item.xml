@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+
+    <TextView
+        android:text="Add Calendar Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addItemLabel"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/titleBox"
+        android:textColor="@color/colorPrimary"
+        style="@android:style/Widget.AutoCompleteTextView"
+        android:hint="Enter Title..."
+        android:layout_below="@+id/addItemLabel"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:layout_below="@+id/titleBox"
+        android:layout_alignParentStart="true"
+        android:id="@+id/descriptionBox"
+        android:layout_alignParentEnd="true"
+        android:hint="Description..."
+        android:textColor="@color/colorPrimary" />
+
+    <CheckBox
+        android:text="Reoccuring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reoccurCheckBox"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:buttonTint="@color/colorAccent"
+        android:checked="false"
+        android:layout_below="@+id/descriptionBox"
+        android:layout_alignStart="@+id/selectDateLabel"
+        android:layout_marginTop="75dp" />
+
+    <TextView
+        android:text="StartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startTimeLabel"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/allDayCheckBox"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="End Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/endTimeLabel"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/startTimeLabel"
+        android:layout_alignStart="@+id/selectDateLabel" />
+
+    <TextView
+        android:text="12:00 AM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/endTimeSelect"
+        android:clickable="true"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:onClick="endTimeClick"
+        android:layout_below="@+id/startTimeSelect"
+        android:layout_alignStart="@+id/startTimeSelect" />
+
+    <TextView
+        android:text="MM/DD/YY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventDateSelect"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="normal|italic"
+        android:clickable="true"
+        android:onClick="eventSelectClick"
+        android:layout_below="@+id/reoccurCheckBox"
+        android:layout_toEndOf="@+id/addItemLabel" />
+
+    <TextView
+        android:text="Select Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectDateLabel"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/reoccurCheckBox"
+        android:layout_toStartOf="@+id/addItemLabel" />
+
+    <TextView
+        android:text="12:00 AM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startTimeSelect"
+        android:clickable="true"
+        android:onClick="startTimeClick"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/allDayCheckBox"
+        android:layout_alignStart="@+id/eventDateSelect" />
+
+    <CheckBox
+        android:text="All Day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/allDayCheckBox"
+        app:buttonTint="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:layout_below="@+id/selectDateLabel"
+        android:layout_alignParentStart="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/endTimeLabel"
+        android:layout_alignStart="@+id/endTimeLabel"
+        android:id="@+id/reoccurBox"
+        android:visibility="visible"
+        android:background="?attr/colorPrimary">
+
+        <CheckBox
+            android:text="Weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/endTimeLabel"
+            android:layout_alignStart="@+id/reoccurBox"
+            android:id="@+id/weeklyCheckBox"
+            android:onClick="weeklyClick"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:buttonTint="@color/colorAccent" />
+
+        <CheckBox
+            android:text="Monthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/monthlyCheckBox"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:buttonTint="@color/colorAccent"
+            android:layout_below="@+id/weeklyCheckBox"
+            android:layout_alignParentStart="true"
+            android:onClick="monthlyClick" />
+
+        <CheckBox
+            android:text="Tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tuesdayCheckBox"
+            app:buttonTint="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:onClick="tuesdayClick"
+            android:layout_below="@+id/mondayCheckBox"
+            android:layout_toStartOf="@+id/saturdayCheckBox" />
+
+        <CheckBox
+            android:text="Monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mondayCheckBox"
+            app:buttonTint="@color/colorAccent"
+            android:onClick="mondayClick"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/tuesdayCheckBox" />
+
+        <CheckBox
+            android:text="Sunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sundayCheckBox"
+            app:buttonTint="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:onClick="sundayClick"
+            android:layout_below="@+id/saturdayCheckBox"
+            android:layout_toEndOf="@+id/tuesdayCheckBox" />
+
+        <CheckBox
+            android:text="Thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/thursdayCheckBox"
+            app:buttonTint="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:onClick="thursdayClick"
+            android:layout_below="@+id/wednesdayCheckBox"
+            android:layout_alignStart="@+id/tuesdayCheckBox" />
+
+        <CheckBox
+            android:text="Friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fridayCheckBox"
+            app:buttonTint="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:onClick="fridayClick"
+            android:layout_below="@+id/thursdayCheckBox"
+            android:layout_alignStart="@+id/thursdayCheckBox" />
+
+        <CheckBox
+            android:text="Wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/wednesdayCheckBox"
+            app:buttonTint="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:onClick="wednesdayClick"
+            android:layout_below="@+id/tuesdayCheckBox"
+            android:layout_alignStart="@+id/tuesdayCheckBox" />
+
+        <TextView
+            android:text="Start Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/endTimeLabel"
+            android:layout_alignStart="@+id/reoccurBox"
+            android:layout_marginTop="71dp"
+            android:id="@+id/startDateLabel"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="End Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/endDateLabel"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_below="@+id/thursdayCheckBox"
+            android:layout_alignParentStart="true" />
+
+        <CheckBox
+            android:text="Saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/saturdayCheckBox"
+            app:buttonTint="@color/colorAccent"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:onClick="saturdayClick"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="11dp" />
+
+        <TextView
+            android:text="MM/DD/YY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/startDateSelect"
+            android:clickable="true"
+            android:onClick="startClick"
+            android:textColor="@color/colorAccent"
+            android:textStyle="italic"
+            android:layout_below="@+id/wednesdayCheckBox"
+            android:layout_toEndOf="@+id/startDateLabel" />
+
+        <TextView
+            android:text="MM/DD/YY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/endDateSelect"
+            android:clickable="true"
+            android:textColor="@color/colorAccent"
+            android:textStyle="italic"
+            android:onClick="endClick"
+            android:layout_below="@+id/endDateLabel"
+            android:layout_alignStart="@+id/startDateSelect" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
