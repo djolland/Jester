@@ -3,5 +3,7 @@
     <color name="colorPrimary">#4B116F</color>
     <color name="colorPrimaryDark">#3C0061</color>
     <color name="colorAccent">#FFCC00</color>
+    <color name="filterBackground">@color/colorPrimary</color>
+    <color name="filterSecondary">@color/colorAccent</color>
     <color name="black">#000000</color>
 </resources>

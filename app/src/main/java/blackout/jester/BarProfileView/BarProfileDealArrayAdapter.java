@@ -15,7 +15,7 @@ import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.R;
 
 /**
- * Created by djoll on 11/26/2016.
+ * Created by djolland on 11/26/2016.
  */
 
 public class BarProfileDealArrayAdapter extends ArrayAdapter<DealListItem> {

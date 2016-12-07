@@ -11,7 +11,7 @@ import blackout.jester.BarData.BarData;
  * This class is meant to be used with an ArrayAdapter.
  */
 
-public class  DealListItem implements Parcelable {
+public class DealListItem implements Parcelable {
 
     private BarData barData;
     private String barImage;

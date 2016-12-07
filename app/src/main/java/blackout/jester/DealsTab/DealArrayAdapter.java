@@ -15,7 +15,7 @@ import java.util.List;
 import blackout.jester.R;
 
 /**
- * Created by djoll on 11/16/2016.
+ * Created by djolland on 11/16/2016.
  */
 
 public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
@@ -33,7 +33,7 @@ public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
-        //get the deal item we are dispalying
+        //get the deal item we are displaying
         DealListItem dealListItem = dealList.get(position);
 
         //inflate the layout for each item
@@ -53,7 +53,6 @@ public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
         barImage.setImageResource(imageID);
 
         return view;
-
     }
 
 }

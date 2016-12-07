@@ -18,7 +18,7 @@ import blackout.jester.MainActivity;
 import blackout.jester.R;
 
 /**
- * Created by djoll on 12/2/2016.
+ * Created by djolland on 12/2/2016.
  */
 
 public class FavoritesFragment extends Fragment {
