@@ -29,7 +29,8 @@ import blackout.jester.DealsTab.DealsFragment;
 import blackout.jester.EventsTab.EventListItem;
 import blackout.jester.EventsTab.EventsFragment;
 import blackout.jester.FavoritesTab.FavoritesFragment;
-import blackout.jester.Filter.FilterClass;
+import blackout.jester.Filter.FilterDealArrayAdapter;
+import blackout.jester.Filter.FilterDealItem;
 import blackout.jester.MapTab.MapFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         barSocialHouse.addDeal("2 for 1 Mixed Drinks", new BigDecimal(4.00), DealType.MIXEDDRINK, "Today");
         barSocialHouse.addDeal("Domestic Beers", new BigDecimal(3.00), DealType.BEER, "Today");
         // * Adding Events
-        barSocialHouse.addEvent("DJ Sumptin", "8:00PM", "Today",EventType.LIVEMUSIC, new BigDecimal(0.00));
+        barSocialHouse.addEvent("DJ Sumptin", "8:00PM", "Today", EventType.LIVEMUSIC, new BigDecimal(0.00));
         barSocialHouse.addEvent("Lady Googa", "7:00PM", "Tomorrow", EventType.LIVEMUSIC, new BigDecimal(10.00));
 
         barSocialHouse.setAsFavorite(); // Testing favorites.
@@ -88,8 +89,6 @@ public class MainActivity extends AppCompatActivity {
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
 
         barBlankBar.addEvent("Karaoke", "12:00am-1:00pm", "25th Dec.", EventType.KARAOKE, new BigDecimal(10.00));
-
-
 
 
         // !!! Add your bars to the barList !!! //

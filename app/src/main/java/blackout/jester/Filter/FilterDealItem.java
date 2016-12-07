@@ -1,4 +1,4 @@
-package blackout.jester;
+package blackout.jester.Filter;
 
 import android.os.Parcel;
 import android.os.Parcelable;
