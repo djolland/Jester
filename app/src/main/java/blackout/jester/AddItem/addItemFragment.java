@@ -21,8 +21,10 @@ import blackout.jester.R;
 
 public class addItemFragment extends Fragment{
 
-    public View onCreateView(Bundle savedInstanceState){
-        View rootView = R.layout.owner_add_item;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState){
+        View rootView = inflater.inflate(R.layout.owner_add_item, container, false);
         final int inactiveColor = android.R.color.darker_gray;
         final int activeColor = android.R.color.black;
 
@@ -32,23 +34,23 @@ public class addItemFragment extends Fragment{
         final int day = localCal.get(Calendar.DAY_OF_MONTH);
         final int month = localCal.get(Calendar.MONTH);
 
-        final RelativeLayout reoccurBox = (RelativeLayout) findViewById(R.id.reoccurBox);
-        final CheckBox reoccuringCB = (CheckBox) findViewById(R.id.reoccurCheckBox);
-        final CheckBox allDayCB = (CheckBox) findViewById(R.id.allDayCheckBox);
-        final CheckBox weeklyCB = (CheckBox) findViewById(R.id.weeklyCheckBox);
-        final CheckBox monthlyCB = (CheckBox) findViewById(R.id.monthlyCheckBox);
-        final CheckBox mondayCB = (CheckBox) findViewById(R.id.mondayCheckBox);
-        final CheckBox tuesdayCB = (CheckBox) findViewById(R.id.tuesdayCheckBox);
-        final CheckBox wednesdayCB = (CheckBox) findViewById(R.id.wednesdayCheckBox);
-        final CheckBox thursdayCB = (CheckBox) findViewById(R.id.thursdayCheckBox);
-        final CheckBox fridayCB = (CheckBox) findViewById(R.id.fridayCheckBox);
-        final CheckBox saturdayCB = (CheckBox) findViewById(R.id.saturdayCheckBox);
-        final CheckBox sundayCB = (CheckBox) findViewById(R.id.sundayCheckBox);
-        final TextView selectDate = (TextView) findViewById(R.id.eventDateSelect);
-        final TextView startDate = (TextView) findViewById(R.id.startDateSelect);
-        final TextView endDate = (TextView) findViewById(R.id.endDateSelect);
-        final TextView startTime = (TextView) findViewById(R.id.startTimeSelect);
-        final TextView endTime = (TextView) findViewByeId(R.id.endTimeSelect);
+        final RelativeLayout reoccurBox = (RelativeLayout) rootView.findViewById(R.id.reoccurBox);
+        final CheckBox reoccuringCB = (CheckBox) rootView.findViewById(R.id.reoccurCheckBox);
+        final CheckBox allDayCB = (CheckBox) rootView.findViewById(R.id.allDayCheckBox);
+        final CheckBox weeklyCB = (CheckBox) rootView.findViewById(R.id.weeklyCheckBox);
+        final CheckBox monthlyCB = (CheckBox) rootView.findViewById(R.id.monthlyCheckBox);
+        final CheckBox mondayCB = (CheckBox) rootView.findViewById(R.id.mondayCheckBox);
+        final CheckBox tuesdayCB = (CheckBox) rootView.findViewById(R.id.tuesdayCheckBox);
+        final CheckBox wednesdayCB = (CheckBox) rootView.findViewById(R.id.wednesdayCheckBox);
+        final CheckBox thursdayCB = (CheckBox) rootView.findViewById(R.id.thursdayCheckBox);
+        final CheckBox fridayCB = (CheckBox) rootView.findViewById(R.id.fridayCheckBox);
+        final CheckBox saturdayCB = (CheckBox) rootView.findViewById(R.id.saturdayCheckBox);
+        final CheckBox sundayCB = (CheckBox) rootView.findViewById(R.id.sundayCheckBox);
+        final TextView selectDate = (TextView) rootView.findViewById(R.id.eventDateSelect);
+        final TextView startDate = (TextView) rootView.findViewById(R.id.startDateSelect);
+        final TextView endDate = (TextView) rootView.findViewById(R.id.endDateSelect);
+        final TextView startTime = (TextView) rootView.findViewById(R.id.startTimeSelect);
+        final TextView endTime = (TextView) rootView.findViewById(R.id.endTimeSelect);
 
         //Check box listeners
         reoccuringCB.setOnClickListener(new View.OnClickListener(){

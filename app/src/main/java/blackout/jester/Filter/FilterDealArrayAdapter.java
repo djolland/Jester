@@ -1,4 +1,4 @@
-package blackout.jester;
+package blackout.jester.Filter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import blackout.jester.R;
 
 /**
  * Created by djolland on 12/6/2016.
