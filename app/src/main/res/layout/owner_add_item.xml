@@ -48,13 +48,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/reoccurCheckBox"
-        android:onClick="reoccurCheck"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         app:buttonTint="@color/colorAccent"
         android:checked="false"
         android:layout_below="@+id/descriptionBox"
-        android:layout_alignStart="@+id/dateLabel1"
+        android:layout_alignStart="@+id/selectDateLabel"
         android:layout_marginTop="75dp" />
 
     <TextView
@@ -75,7 +74,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:layout_below="@+id/startTimeLabel"
-        android:layout_alignStart="@+id/dateLabel1" />
+        android:layout_alignStart="@+id/selectDateLabel" />
 
     <TextView
         android:text="12:00 AM"
@@ -107,7 +106,7 @@
         android:text="Select Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/dateLabel1"
+        android:id="@+id/selectDateLabel"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:layout_below="@+id/reoccurCheckBox"
@@ -134,8 +133,7 @@
         app:buttonTint="@color/colorAccent"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        android:onClick="allDayClick"
-        android:layout_below="@+id/dateLabel1"
+        android:layout_below="@+id/selectDateLabel"
         android:layout_alignParentStart="true" />
 
     <RelativeLayout
@@ -144,7 +142,7 @@
         android:layout_below="@+id/endTimeLabel"
         android:layout_alignStart="@+id/endTimeLabel"
         android:id="@+id/reoccurBox"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:background="?attr/colorPrimary">
 
         <CheckBox
