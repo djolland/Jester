@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         // * Adding Deals
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
 
-        barBlankBar.addEvent("Kareoke", "12:00am-1:00pm", "25th Dec.", EventType.KARAOKE, new BigDecimal(10.00));
+        barBlankBar.addEvent("Karaoke", "12:00am-1:00pm", "25th Dec.", EventType.KARAOKE, new BigDecimal(10.00));
 
 
 
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         barList.add(barBlankBar);
 
         /** End of Adding New Bars Section */
-
         // Setting up Bottom Bar navigation
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.setMaxFixedTabs(4); //Default is 3, when this number is exceeded the bottombar
