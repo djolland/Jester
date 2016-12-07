@@ -17,7 +17,7 @@ public class BarEventData implements Parcelable{
     private String date;
     private EventType eventType;
     private BigDecimal coverCharge;
-    //recurrance
+    //recurrence
 
     public BarEventData(String description, String time, String date, EventType aEventType, BigDecimal coverCharge){
         this.description = description;

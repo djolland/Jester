@@ -15,7 +15,7 @@ import blackout.jester.BarData.BarData;
 import blackout.jester.R;
 
 /**
- * Created by djoll on 12/3/2016.
+ * Created by djolland on 12/3/2016.
  */
 
 public class FavArrayAdapter extends ArrayAdapter<BarData> {

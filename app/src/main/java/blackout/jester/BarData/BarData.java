@@ -20,27 +20,17 @@ public class BarData implements Parcelable {
     private String barProfileImage;
     private Boolean favorite;
     private BarInfoData info;
-    //distance int
+    private int disatnceMiles;
     private ArrayList<BarDealData> deals;
     private ArrayList<BarEventData> events;
 
-    public BarData(String barName, String barListImage, String barProfileImage,
-                   ArrayList<BarDealData> deals, ArrayList<BarEventData> events,
-                   BarInfoData barInfo, Boolean favorite){
-        this.barName = barName;
-        this.barListImage = barListImage;
-        this.barProfileImage = barProfileImage;
-        this.info = barInfo;
-        this.deals = deals;
-        this.events = events;
-        this.favorite = favorite;
-    }
 
     public BarData(String barName, String barListImage, String barProfileImage){
         this.barName = barName;
         this.barListImage = barListImage;
         this.barProfileImage = barProfileImage;
         this.info = new BarInfoData();
+        this.disatnceMiles = 0;
         this.deals = new ArrayList<>();
         this.events = new ArrayList<>();
         this.favorite = false;
@@ -51,6 +41,7 @@ public class BarData implements Parcelable {
         this.barListImage = "no_bar_list_image";
         this.barProfileImage = "no_bar_list_image";
         this.info = new BarInfoData();
+        this.disatnceMiles = 0;
         this.deals = new ArrayList<>();
         this.events = new ArrayList<>();
         this.favorite = false;
@@ -69,6 +60,8 @@ public class BarData implements Parcelable {
     public String getBarProfileImage() {
         return barProfileImage;
     }
+
+    public int getDisatnceMiles(){return disatnceMiles;}
 
     public BarInfoData getInfo(){return info;}
 
@@ -109,6 +102,8 @@ public class BarData implements Parcelable {
     public void setBarProfileImage(String barProfileImage){
         this.barProfileImage = barProfileImage;
     }
+
+    public void setDisatnceMiles(int disatnceMiles){this.disatnceMiles = disatnceMiles;}
 
     public void setAddress(String address){
         this.info.setAddress(address);
