@@ -2,8 +2,6 @@ package blackout.jester.Filter;
 
 import java.util.ArrayList;
 
-import blackout.jester.BarData.BarData;
-import blackout.jester.BarData.DealType;
 import blackout.jester.BarData.EventType;
 import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.EventsTab.EventListItem;
@@ -14,11 +12,12 @@ import blackout.jester.EventsTab.EventListItem;
 
 public class FilterClass {
 
-    public static ArrayList<DealListItem> filterByDeal(ArrayList<DealListItem> currentDealList, ArrayList<FilterDealItem> filterList){
+    public static ArrayList<DealListItem> filterByDeal(ArrayList<DealListItem> currentDealList,
+                                                       ArrayList<FilterListItem> dealFilterList){
         ArrayList<DealListItem> filteredDealList = new ArrayList<>();
         for (DealListItem dealItem: currentDealList){
-            for (FilterDealItem filterItem: filterList){
-                if (filterItem.getDealType().equals(dealItem.getDealType()) && filterItem.getIsChecked()){
+            for (FilterListItem filterItem: dealFilterList){
+                if (filterItem.getFilterType().equals(dealItem.getDealType()) && filterItem.getIsChecked()){
                     filteredDealList.add(dealItem);
                 }
             }
@@ -26,11 +25,14 @@ public class FilterClass {
         return filteredDealList;
     }
 
-    public static ArrayList<EventListItem> filterByEvent(ArrayList<EventListItem> currentEventList, ArrayList<EventType> filterByEnum){
+    public static ArrayList<EventListItem> filterByEvent(ArrayList<EventListItem> currentEventList,
+                                                         ArrayList<FilterListItem> eventFilterList){
         ArrayList<EventListItem> filteredEventList = new ArrayList<>();
-        for(EventListItem item: currentEventList){
-            if (filterByEnum.contains(item.getEventType())){
-                filteredEventList.add(item);
+        for (EventListItem eventItem: currentEventList){
+            for (FilterListItem filterItem: eventFilterList){
+                if (filterItem.getFilterType().equals(eventItem.getEventType()) && filterItem.getIsChecked()){
+                    filteredEventList.add(eventItem);
+                }
             }
         }
         return filteredEventList;

@@ -12,18 +12,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import blackout.jester.BarData.DealType;
+import blackout.jester.BarData.EventType;
 import blackout.jester.R;
 
 /**
  * Created by djolland on 12/6/2016.
  */
 
-public class FilterDealArrayAdapter extends ArrayAdapter<FilterListItem> {
+public class FilterEventArrayAdapter extends ArrayAdapter<FilterListItem> {
 
     private Context context;
     private ArrayList<FilterListItem> filterList;
 
-    public FilterDealArrayAdapter(Context context, int resource, ArrayList<FilterListItem> objects) {
+    public FilterEventArrayAdapter(Context context, int resource, ArrayList<FilterListItem> objects) {
         super(context, resource, objects);
 
         this.context = context;
@@ -33,7 +34,7 @@ public class FilterDealArrayAdapter extends ArrayAdapter<FilterListItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        //get the deal item we are displaying
+        //get the event item we are displaying
         FilterListItem dealListItem = filterList.get(position);
 
         //inflate the layout for each item
@@ -45,18 +46,18 @@ public class FilterDealArrayAdapter extends ArrayAdapter<FilterListItem> {
         TextView filterText = (TextView) view.findViewById(R.id.filter_item_text);
 
         //display filter text
-        switch ((DealType) dealListItem.getFilterType()){
-            case BEER :
-                filterText.setText("Deal Type - Beer");
+        switch ((EventType) dealListItem.getFilterType()){
+            case LIVEMUSIC:
+                filterText.setText("Event Type - Live Music");
                 break;
-            case MIXEDDRINK:
-                filterText.setText("Deal Type - Mixed Drink");
+            case KARAOKE:
+                filterText.setText("Event Type - Karaoke");
                 break;
-            case SHOTS:
-                filterText.setText("Deal Type - Shots");
+            case COMEDY:
+                filterText.setText("Event Type - Comedy");
                 break;
             case OTHER:
-                filterText.setText("Deal Type - Other");
+                filterText.setText("Event Type - Other");
                 break;
             default:
                 filterText.setText("Invalid Filter Found");
