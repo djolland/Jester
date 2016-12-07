@@ -10,6 +10,8 @@
         <item name="android:colorBackground">@color/white</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/white</item>
+        <item name="android.datePickerDialogTheme">@style/Picker.Theme</item>
+        <item name="android.timePickerDialotTheme">@style/Picker.Theme</item>
     </style>
 
     <style name="MainActivityTheme" parent="AppTheme">
@@ -42,5 +44,11 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Dialog.Picker" parent = "Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
 </resources>
