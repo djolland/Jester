@@ -90,11 +90,54 @@ public class MainActivity extends AppCompatActivity {
 
         barBlankBar.addEvent("Karaoke", "12:00am-1:00pm", "25th Dec.", EventType.KARAOKE, new BigDecimal(10.00));
 
+        // Pump House //
+        BarData barPumpHaus = new BarData("Pump Haus", "pump_haus_logo", "pump_haus_profile");
+        barPumpHaus.setDisatnceMiles(2);
+        barPumpHaus.setAddress("311 Main St, Cedar Falls, IA");
+        barPumpHaus.setHours("Sunday - Saturday: 11AM - 2AM");
+        barPumpHaus.setContactInfo("(319) 277 -8111");
+
+        barPumpHaus.addDeal("Peppermint Patty Shots", new BigDecimal(2.00), DealType.SHOTS, "Today");
+        barPumpHaus.addDeal("Domestic Drafts", new BigDecimal(1.50), DealType.BEER, "Today");
+
+        barPumpHaus.addEvent("Daniel Tosh Stand up", "8:00pm-8:30pm", "19th Dec.", EventType.COMEDY, new BigDecimal(15.00));
+
+
+        // Little Bigs //
+        BarData barLittleBigs = new BarData("Little Bigs", "little_bigs_logo", "paddys_pub_door");
+        barLittleBigs.setDisatnceMiles(1);
+        barLittleBigs.setAddress("2210 College St, Cedar Falls, IA");
+        barLittleBigs.setHours("Sunday - Saturday: 11AM - 2AM");
+        barLittleBigs.setContactInfo("(319) 277 -8111");
+
+        barLittleBigs.addDeal("The Little Big", new BigDecimal(3.00), DealType.MIXEDDRINK, "Today");
+        barLittleBigs.addDeal("Import Bottles", new BigDecimal(1.50), DealType.BEER, "Today");
+
+        barLittleBigs.addEvent("Trivia Night", "8:00pm-10:00pm", "21th Dec.", EventType.OTHER, new BigDecimal(0.00));
+
+
+        // Octopus //
+        BarData barOctopus = new BarData("Octopus", "octopus_logo", "octopus_profile");
+        barOctopus.setDisatnceMiles(1);
+        barOctopus.setAddress("2304 College St, Cedar Falls, IA");
+        barOctopus.setHours("Sunday - Saturday: 11AM - 2AM");
+        barOctopus.setContactInfo("(319) 273 -6228");
+
+        barOctopus.addDeal("Free Popcorn", new BigDecimal(0.00), DealType.OTHER, "Today");
+        barOctopus.addDeal("PBR Drafts", new BigDecimal(1.00), DealType.BEER, "Today");
+
+        barOctopus.addEvent("Stand Up Comedy", "8:00pm-11:00pm", "29th Dec.", EventType.COMEDY, new BigDecimal(0.00));
+
+
+
 
 
         // !!! Add your bars to the barList !!! //
         barList.add(barSocialHouse);
         barList.add(barBlankBar);
+        barList.add(barPumpHaus);
+        barList.add(barLittleBigs);
+        barList.add(barOctopus);
 
         /** End of Adding New Bars Section */
 
@@ -121,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         filterPopUp.setFocusable(true);
         filterPopUp.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT); //1000
         filterPopUp.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT); //900
-        
+
         // Setting up Bottom Bar navigation
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.setMaxFixedTabs(4); //Default is 3, when this number is exceeded the bottombar
