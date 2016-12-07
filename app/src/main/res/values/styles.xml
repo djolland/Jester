@@ -10,8 +10,6 @@
         <item name="android:colorBackground">@color/white</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/white</item>
-        <item name="android.datePickerDialogTheme">@style/Picker.Theme</item>
-        <item name="android.timePickerDialotTheme">@style/Picker.Theme</item>
     </style>
 
     <style name="MainActivityTheme" parent="AppTheme">
