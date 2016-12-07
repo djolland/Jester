@@ -14,11 +14,13 @@ import blackout.jester.EventsTab.EventListItem;
 
 public class FilterClass {
 
-    public static ArrayList<DealListItem> filterByDeal(ArrayList<DealListItem> currentDealList, ArrayList<DealType> filterByEnum){
+    public static ArrayList<DealListItem> filterByDeal(ArrayList<DealListItem> currentDealList, ArrayList<FilterDealItem> filterList){
         ArrayList<DealListItem> filteredDealList = new ArrayList<>();
-        for(DealListItem item: currentDealList){
-            if (filterByEnum.contains(item.getDealType())){
-                filteredDealList.add(item);
+        for (DealListItem dealItem: currentDealList){
+            for (FilterDealItem filterItem: filterList){
+                if (filterItem.getDealType().equals(dealItem.getDealType()) && filterItem.getIsChecked()){
+                    filteredDealList.add(dealItem);
+                }
             }
         }
         return filteredDealList;

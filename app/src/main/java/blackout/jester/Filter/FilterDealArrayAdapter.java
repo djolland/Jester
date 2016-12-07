@@ -51,6 +51,12 @@ public class FilterDealArrayAdapter extends ArrayAdapter<FilterDealItem> {
             case MIXEDDRINK:
                 filterText.setText("Deal Type - Mixed Drink");
                 break;
+            case SHOTS:
+                filterText.setText("Deal Type - Shots");
+                break;
+            case OTHER:
+                filterText.setText("Deal Type - Other");
+                break;
             default:
                 filterText.setText("Invalid Filter Found");
         }

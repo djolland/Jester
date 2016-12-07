@@ -23,6 +23,11 @@ public class FilterDealItem implements Parcelable{
     public DealType getDealType(){return dealType;};
     public Boolean getIsChecked(){return isChecked;}
 
+    // Setters
+    public void setIsChecked(Boolean bool){
+        isChecked = bool;
+    }
+
     // Parceling data
     private FilterDealItem(Parcel in) {
         this.dealType = DealType.valueOf(in.readString());

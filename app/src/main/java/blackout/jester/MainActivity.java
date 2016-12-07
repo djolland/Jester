@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -29,6 +31,7 @@ import blackout.jester.DealsTab.DealsFragment;
 import blackout.jester.EventsTab.EventListItem;
 import blackout.jester.EventsTab.EventsFragment;
 import blackout.jester.FavoritesTab.FavoritesFragment;
+import blackout.jester.Filter.FilterClass;
 import blackout.jester.Filter.FilterDealArrayAdapter;
 import blackout.jester.Filter.FilterDealItem;
 import blackout.jester.MapTab.MapFragment;
@@ -36,10 +39,17 @@ import blackout.jester.MapTab.MapFragment;
 public class MainActivity extends AppCompatActivity {
 
     private BottomBar mBottomBar;
-    private Menu filterMenu;
+    private Menu mainActionBarMenu;
     private PopupWindow filterPopUp;
+    private ListView filterListView;
+    private Button filterApplyButton;
+    private FilterDealArrayAdapter filterDealAdapter;
+
     private ArrayList<BarData> barList;
-    private ArrayList<FilterDealItem> filterDealItems; // Filter options for Deal List
+    private ArrayList<FilterDealItem> filterDealItems; // Filter options for Deal List Popup
+    private ArrayList<FilterDealItem> tempFilterDealItems = new ArrayList<>();
+    private ArrayList<DealType> dealFilterList; // List of dealtypes to be filtered.
+
     private View rootView;
 
     @Override
@@ -97,12 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
         /** End of Adding New Bars Section */
 
+
         /** Setting up filter menu **/
-        ListView filterListView;
-        FilterDealArrayAdapter filterDealAdapter;
         // Initializing Filter Lists:
         for (DealType dealType: DealType.values()){
-            filterDealItems.add(new FilterDealItem(dealType, false));
+            filterDealItems.add(new FilterDealItem(dealType, true));
         }
 
         LinearLayout viewGroup = (LinearLayout) findViewById(R.id.filter_popup_window);
@@ -110,10 +119,14 @@ public class MainActivity extends AppCompatActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View filterLayout = layoutInflater.inflate(R.layout.filter_popup_layout, viewGroup);
 
-        filterDealAdapter = new FilterDealArrayAdapter (filterLayout.getContext(), 0, filterDealItems);
+        // Setting up references to Filter Window elements
         filterListView = (ListView) filterLayout.findViewById(R.id.filter_window_listview);
-        filterListView.setAdapter(filterDealAdapter);
+        filterApplyButton = (Button) filterLayout.findViewById(R.id.filter_apply_button);
 
+        // Setting up ArrayList adapters for the different filter views
+        filterDealAdapter = new FilterDealArrayAdapter (filterLayout.getContext(), 0, filterDealItems);
+
+        // Setting up filter popup window
         filterPopUp = new PopupWindow(this);
         filterPopUp.setContentView(filterLayout);
         filterPopUp.setFocusable(true);
@@ -127,14 +140,14 @@ public class MainActivity extends AppCompatActivity {
         mBottomBar.setItems(R.menu.bottombar_menu);
 
         // Drawing screen with declared bar data.
-        updateScreen();
+        updateMainScreen();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_ab_menu, menu);
-        this.filterMenu = menu;
+        this.mainActionBarMenu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -142,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.filter_top:
+                tempFilterDealItems.clear();
+                tempFilterDealItems.addAll(filterDealItems);
                 // Calling the filter PopupWindow
                 filterPopUp.showAtLocation(rootView, Gravity.CENTER, 0, 0);
                 return true;
@@ -162,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called from updateBarData and onCreate.
      */
-    private void updateScreen(){
+    private void updateMainScreen(){
 
         // Generating the Deals and Events List for the main Tabs //
         ArrayList<DealListItem> dealListItems = new ArrayList<>();
@@ -175,7 +190,8 @@ public class MainActivity extends AppCompatActivity {
                 favBarList.add(bar);
             }
         }
-
+        // Applying filters to lists
+        dealListItems = FilterClass.filterByDeal(dealListItems, filterDealItems);
 
         // Bundling Deal and Event lists to pass to fragments
         Bundle dealsBundle = new Bundle();
@@ -202,6 +218,8 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.main_container, dealsFragment)
                             .commit();
+                    // Update filter menu
+                    setFilterWindowToDeals();
                 }
                 else if (menuItemId == R.id.bb_menu_events) {
                     getSupportFragmentManager().beginTransaction()
@@ -229,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     /**
      * This method is to be called from all child fragments if a bars data needs to be updated.
      *
@@ -240,7 +259,50 @@ public class MainActivity extends AppCompatActivity {
                 barList.set(barList.indexOf(bar), updatedBar);
             }
         }
-        updateScreen();
+        updateMainScreen();
+    }
+
+    public void setFilterWindowToDeals(){
+        filterPopUp.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                filterDealItems.clear();
+                filterDealItems.addAll(tempFilterDealItems);
+                filterDealAdapter.notifyDataSetChanged();
+                updateMainScreen();
+            }
+        });
+        filterListView.setAdapter(filterDealAdapter);
+        filterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                FilterDealItem selectedFilterItem= (FilterDealItem) adapterView.getItemAtPosition(position);
+                for (FilterDealItem item : filterDealItems){
+                    if (item.getDealType().equals(selectedFilterItem.getDealType())){
+                        if (item.getIsChecked()){
+                            filterDealItems.get(filterDealItems.indexOf(selectedFilterItem)).setIsChecked(false);
+                            filterDealAdapter.notifyDataSetChanged();
+                        }
+                        else {
+                            filterDealItems.get(filterDealItems.indexOf(selectedFilterItem)).setIsChecked(true);
+                            filterDealAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+            }
+        });
+
+        filterApplyButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                tempFilterDealItems.clear();
+                tempFilterDealItems.addAll(filterDealItems);
+                filterPopUp.dismiss();
+            }
+
+        });
     }
 
 }
