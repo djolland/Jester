@@ -120,7 +120,7 @@ public class BarGenerator {
 
         // Screaming Eagle //
         BarData barScreamingEagle =
-                new BarData("Sscreaming Eagle",
+                new BarData("Screaming Eagle",
                             "screaming_eagle_logo",
                             "screaming_eagle_profile"
                 );

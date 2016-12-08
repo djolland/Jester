@@ -41,6 +41,8 @@ import blackout.jester.Filter.FilterClass;
 import blackout.jester.Filter.FilterDealArrayAdapter;
 import blackout.jester.Filter.FilterEventArrayAdapter;
 import blackout.jester.Filter.FilterListItem;
+import blackout.jester.MainNavDrawer.DrawerArrayAdapter;
+import blackout.jester.MainNavDrawer.DrawerListItem;
 import blackout.jester.MapTab.MapFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+    private DrawerArrayAdapter mDrawerAdapter;
     private CharSequence mTitle;
     private CharSequence mDrawerTitle;
     private PopupWindow filterPopUp;
@@ -89,13 +92,16 @@ public class MainActivity extends AppCompatActivity {
         mBottomBar.setItems(R.menu.bottombar_menu);
 
         /** Setting up Drawer Menu**/
-        String[] drawerListOptions = {"Bar Patron", "Bar Owner"};
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mTitle = mDrawerTitle = getTitle();
         // Set the adapter for the list view
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_item_layout, drawerListOptions));
+        ArrayList<DrawerListItem> drawerItems = new ArrayList<>();
+        drawerItems.add(new DrawerListItem("ic_patron_drawer","Bar Patron"));
+        drawerItems.add(new DrawerListItem("ic_owner_drawer","Bar Owner"));
+        mDrawerAdapter = new DrawerArrayAdapter(this, 0, drawerItems);
+
+        mDrawerList.setAdapter(mDrawerAdapter);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0){
 
