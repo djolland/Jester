@@ -3,6 +3,9 @@ package blackout.jester;
 import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -44,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
     private Menu mainActionBarMenu;
     private View rootView;
     // Filter UI variables
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private CharSequence mTitle;
+    private CharSequence mDrawerTitle;
     private PopupWindow filterPopUp;
     private ListView filterListView;
     private Button filterApplyButton;
@@ -146,9 +155,6 @@ public class MainActivity extends AppCompatActivity {
         barOctopus.addEvent("Stand Up Comedy", "8:00pm-11:00pm", "29th Dec.", EventType.COMEDY, new BigDecimal(0.00));
 
 
-
-
-
         // !!! Add your bars to the barList !!! //
         barList.add(barSocialHouse);
         barList.add(barBlankBar);
@@ -157,6 +163,41 @@ public class MainActivity extends AppCompatActivity {
         barList.add(barOctopus);
 
         /** End of Adding New Bars Section */
+
+        /** Setting up Drawer Menu**/
+        String[] drawerListOptions = {"Bar Patron", "Bar Owner"};
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mTitle = mDrawerTitle = getTitle();
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_item_layout, drawerListOptions));
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0){
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                //getSupportActionBar().setTitle(mTitle);
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                //getSupportActionBar().setTitle(mDrawerTitle);
+            }
+        };
+
+        // Set the drawer toggle as the DrawerListener
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        // Set the list's click listener
+        //mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer_toggle);
 
 
         /** Setting up filter menu **/
@@ -210,6 +251,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
         switch (item.getItemId()) {
             case R.id.filter_top:
                 tempFilterDealItems.clear();
