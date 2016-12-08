@@ -162,7 +162,13 @@ public class MainActivity extends AppCompatActivity {
         barList.add(barLittleBigs);
         barList.add(barOctopus);
 
-        /** End of Adding New Bars Section */
+        /* End of Adding New Bars Section */
+
+        /** Setting up Bottom Bar navigation **/
+        mBottomBar = BottomBar.attach(rootView, savedInstanceState);
+        mBottomBar.setMaxFixedTabs(4); //Default is 3, when this number is exceeded the bottombar
+        //changes styles. we don't want that happening.
+        mBottomBar.setItems(R.menu.bottombar_menu);
 
         /** Setting up Drawer Menu**/
         String[] drawerListOptions = {"Bar Patron", "Bar Owner"};
@@ -230,12 +236,6 @@ public class MainActivity extends AppCompatActivity {
         filterPopUp.setFocusable(true);
         filterPopUp.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT); //1000
         filterPopUp.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT); //900
-
-        // Setting up Bottom Bar navigation
-        mBottomBar = BottomBar.attach(this, savedInstanceState);
-        mBottomBar.setMaxFixedTabs(4); //Default is 3, when this number is exceeded the bottombar
-                                       //changes styles. we don't want that happening.
-        mBottomBar.setItems(R.menu.bottombar_menu);
 
         // Drawing screen with declared bar data.
         updateMainScreen();
