@@ -3,7 +3,10 @@ package blackout.jester.DealsTab;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.math.BigDecimal;
+
 import blackout.jester.BarData.BarData;
+import blackout.jester.BarData.BarDealData;
 import blackout.jester.BarData.DealType;
 
 /**
@@ -12,7 +15,7 @@ import blackout.jester.BarData.DealType;
  * This class is meant to be used with an ArrayAdapter.
  */
 
-public class DealListItem implements Parcelable {
+public class DealListItem implements Parcelable, Comparable<DealListItem> {
 
     private BarData barData;
     private String barImage;
@@ -20,21 +23,24 @@ public class DealListItem implements Parcelable {
     private String dealTabText;
     private String profileDealText;
     private DealType dealType;
+    private BarDealData dealData;
 
     public DealListItem(BarData barData, int dealPosition){
         this.barData = barData;
         this.barImage = barData.getBarListImage();
         this.barName = barData.getBarName();
-        this.dealType = barData.getDeal(dealPosition).getDealType();
+        this.dealData = barData.getDeal(dealPosition);
+        this.dealType = this.dealData.getDealType();
+
         // Constructing the deal text that will appear in the main Deal Tab List
         this.dealTabText = barData.getDeal(dealPosition)
                 .getDescription() +
-                "\nPrice: $" + barData.getDeal(dealPosition).getPrice().toString();
+                "\nPrice: $" + this.dealData.getPrice();
 
         // Constructing the deal text that will appear in the Deal Tab list in the
         // Bar Profile page.
         this.profileDealText = barData.getDeal(dealPosition)
-                .getDescription() + " - $" + barData.getDeal(dealPosition).getPrice().toString();
+                .getDescription() + " - $" + this.dealData.getPrice();
     }
 
     // Getters
@@ -44,6 +50,7 @@ public class DealListItem implements Parcelable {
     public String getDealTabText(){return dealTabText;}
     public String getProfileDealText(){return profileDealText;}
     public DealType getDealType(){return dealType;}
+    public BarDealData getDealData(){return dealData;}
 
     // Parceling data
     private DealListItem(Parcel in) {
@@ -80,4 +87,8 @@ public class DealListItem implements Parcelable {
         }
     };
 
+    @Override
+    public int compareTo(DealListItem o) {
+        return this.dealData.compareTo(o.dealData);
+    }
 }

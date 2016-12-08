@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * Contains all the data concerning a single deal.
@@ -63,7 +64,12 @@ public class BarDealData implements Comparable<BarDealData>, Parcelable{
 
     public void writeToParcel(Parcel out, int flags) {
         out.writeString(this.description);
-        out.writeString(this.price.toString());
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        df.setMinimumFractionDigits(0);
+        df.setGroupingUsed(false);
+        String priceString = df.format(this.price);
+        out.writeString(priceString);
         out.writeString(this.dealType.name());
         out.writeString(this.date);
     }

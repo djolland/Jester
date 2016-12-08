@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * Contains all data concerning a single event
  */
 
-public class BarEventData implements Parcelable{
+public class BarEventData implements Parcelable, Comparable<BarEventData>{
 
     private String description;
     private String time;
@@ -77,5 +77,10 @@ public class BarEventData implements Parcelable{
             return new BarEventData[size];
         }
     };
+
+    @Override
+    public int compareTo(BarEventData o) {
+        return this.getCoverCharge().compareTo(o.getCoverCharge());
+    }
 
 }

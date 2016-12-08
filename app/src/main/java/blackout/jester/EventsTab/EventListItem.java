@@ -14,7 +14,7 @@ import blackout.jester.BarData.EventType;
  * This class is meant to be used with an ArrayAdapter.
  */
 
-public class EventListItem implements Parcelable {
+public class EventListItem implements Parcelable, Comparable<EventListItem> {
 
     private BarData barData;
     private String barImage;
@@ -22,20 +22,21 @@ public class EventListItem implements Parcelable {
     private String eventTabText;
     private String profileEventText;
     private EventType eventType;
+    private BarEventData eventData;
 
     public EventListItem(BarData barData, int eventPosition){
         this.barData = barData;
         this.barImage = barData.getBarListImage();
         this.barName = barData.getBarName();
-        this.eventType = barData.getEvent(eventPosition).getEventType();
+        this.eventData = barData.getEvent(eventPosition);
+        this.eventType = this.eventData.getEventType();
 
-        BarEventData event = this.barData.getEvent(eventPosition);
         // Constructing the deal text that will appear in the main Deal Tab List
-        this.eventTabText = event.getDescription() + " - " + event.getTime() +
-                "\nCover: $" + event.getCoverCharge().toString();
+        this.eventTabText = this.eventData.getDescription() + " - " + this.eventData.getTime() +
+                "\nCover: $" + this.eventData.getCoverCharge();
         // Constructing the deal text that will appear in the Deal Tab list in the
         // Bar Profile page.
-        this.profileEventText = event.getDescription() + " - $" + event.getCoverCharge().toString();
+        this.profileEventText = this.eventData.getDescription() + " - $" + this.eventData.getCoverCharge().toString();
     }
 
     // Getters
@@ -45,7 +46,7 @@ public class EventListItem implements Parcelable {
     public String getEventTabText(){return eventTabText;}
     public String getProfileEventText(){return profileEventText;}
     public EventType getEventType() {return eventType;}
-
+    public BarEventData getEventData(){return eventData;}
     // Parceling data
     private EventListItem(Parcel in) {
         String[] data = new String[4];
@@ -84,4 +85,8 @@ public class EventListItem implements Parcelable {
     };
 
 
+    @Override
+    public int compareTo(EventListItem o) {
+        return this.eventData.compareTo(o.getEventData());
+    }
 }

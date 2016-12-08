@@ -188,7 +188,7 @@ public class BarData implements Parcelable {
         this.barListImage = in.readString();
         this.barProfileImage = in .readString();
         this.info = in.readParcelable(BarInfoData.class.getClassLoader());
-        this.deals = in.readArrayList(BarDealData.class.getClassLoader());
+        this.deals = in.readArrayList(BarDealData.class.getClassLoader());//in.readTypedList(this.deals, BarDealData.CREATOR);//
         this.events = in.readArrayList(BarEventData.class.getClassLoader());
         in.readBooleanArray(fav);
         this.favorite = fav[0];
@@ -205,7 +205,7 @@ public class BarData implements Parcelable {
         out.writeString(this.barListImage);
         out.writeString(this.barProfileImage);
         out.writeParcelable(this.info, flags);
-        out.writeList(this.deals);
+        out.writeList(this.deals); //out.writeTypedList(this.deals);//
         out.writeList(this.events);
         out.writeBooleanArray(fav);
     }
