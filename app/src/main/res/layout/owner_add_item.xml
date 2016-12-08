@@ -43,19 +43,6 @@
         android:hint="Description..."
         android:textColor="@color/colorPrimary" />
 
-    <CheckBox
-        android:text="Reoccuring"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/reoccurCheckBox"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        app:buttonTint="@color/colorAccent"
-        android:checked="false"
-        android:layout_below="@+id/descriptionBox"
-        android:layout_alignStart="@+id/selectDateLabel"
-        android:layout_marginTop="75dp" />
-
     <TextView
         android:text="StartTime"
         android:layout_width="wrap_content"
@@ -64,7 +51,8 @@
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:layout_below="@+id/allDayCheckBox"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="1dp" />
 
     <TextView
         android:text="End Time"
@@ -85,22 +73,21 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="italic"
-        android:onClick="endTimeClick"
         android:layout_below="@+id/startTimeSelect"
         android:layout_alignStart="@+id/startTimeSelect" />
 
     <TextView
         android:text="MM/DD/YY"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/eventDateSelect"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="normal|italic"
         android:clickable="true"
-        android:onClick="eventSelectClick"
+        android:layout_alignTop="@+id/selectDateLabel"
         android:layout_below="@+id/reoccurCheckBox"
-        android:layout_toEndOf="@+id/addItemLabel" />
+        android:layout_toEndOf="@+id/addItemLabel"
+        android:layout_width="wrap_content" />
 
     <TextView
         android:text="Select Date"
@@ -118,7 +105,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/startTimeSelect"
         android:clickable="true"
-        android:onClick="startTimeClick"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="italic"
@@ -130,11 +116,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/allDayCheckBox"
-        app:buttonTint="@color/colorAccent"
+        android:buttonTint="@color/colorAccent"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:layout_below="@+id/selectDateLabel"
         android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:text="Reoccuring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reoccurCheckBox"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:buttonTint="@color/colorAccent"
+        android:checked="false"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/descriptionBox"
+        android:layout_alignStart="@+id/selectDateLabel" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/endTimeLabel"
+        android:layout_marginStart="57dp"
+        android:textColor="@color/colorPrimary" />
+
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/endTimeSelect"
+        android:layout_marginEnd="35dp"
+        android:id="@+id/saveButton"
+        android:textColor="@color/colorPrimary" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -142,20 +161,18 @@
         android:layout_below="@+id/endTimeLabel"
         android:layout_alignStart="@+id/endTimeLabel"
         android:id="@+id/reoccurBox"
-        android:visibility="visible"
-        android:background="?attr/colorPrimary">
+        android:visibility="invisible"
+        android:background="?attr/colorPrimary"
+        android:layout_above="@+id/cancelButton">
 
         <CheckBox
             android:text="Weekly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/endTimeLabel"
-            android:layout_alignStart="@+id/reoccurBox"
             android:id="@+id/weeklyCheckBox"
-            android:onClick="weeklyClick"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:buttonTint="@color/colorAccent" />
+            android:buttonTint="@color/colorAccent" />
 
         <CheckBox
             android:text="Monthly"
@@ -164,20 +181,18 @@
             android:id="@+id/monthlyCheckBox"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:buttonTint="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
             android:layout_below="@+id/weeklyCheckBox"
-            android:layout_alignParentStart="true"
-            android:onClick="monthlyClick" />
+            android:layout_alignParentStart="true"/>
 
         <CheckBox
             android:text="Tuesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tuesdayCheckBox"
-            app:buttonTint="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:onClick="tuesdayClick"
             android:layout_below="@+id/mondayCheckBox"
             android:layout_toStartOf="@+id/saturdayCheckBox" />
 
@@ -186,8 +201,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mondayCheckBox"
-            app:buttonTint="@color/colorAccent"
-            android:onClick="mondayClick"
+            android:buttonTint="@color/colorAccent"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_alignParentTop="true"
@@ -198,10 +212,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sundayCheckBox"
-            app:buttonTint="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:onClick="sundayClick"
             android:layout_below="@+id/saturdayCheckBox"
             android:layout_toEndOf="@+id/tuesdayCheckBox" />
 
@@ -210,10 +223,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/thursdayCheckBox"
-            app:buttonTint="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:onClick="thursdayClick"
             android:layout_below="@+id/wednesdayCheckBox"
             android:layout_alignStart="@+id/tuesdayCheckBox" />
 
@@ -222,10 +234,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/fridayCheckBox"
-            app:buttonTint="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:onClick="fridayClick"
             android:layout_below="@+id/thursdayCheckBox"
             android:layout_alignStart="@+id/thursdayCheckBox" />
 
@@ -234,10 +245,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/wednesdayCheckBox"
-            app:buttonTint="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:onClick="wednesdayClick"
             android:layout_below="@+id/tuesdayCheckBox"
             android:layout_alignStart="@+id/tuesdayCheckBox" />
 
@@ -245,8 +255,6 @@
             android:text="Start Date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/endTimeLabel"
-            android:layout_alignStart="@+id/reoccurBox"
             android:layout_marginTop="71dp"
             android:id="@+id/startDateLabel"
             android:textColor="@color/white"
@@ -267,38 +275,135 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/saturdayCheckBox"
-            app:buttonTint="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:onClick="saturdayClick"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="11dp" />
 
         <TextView
-            android:text="MM/DD/YY"
+            android:text="MM/DD/YYYY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/startDateSelect"
             android:clickable="true"
-            android:onClick="startClick"
             android:textColor="@color/colorAccent"
             android:textStyle="italic"
             android:layout_below="@+id/wednesdayCheckBox"
             android:layout_toEndOf="@+id/startDateLabel" />
 
         <TextView
-            android:text="MM/DD/YY"
+            android:text="MM/DD/YYYY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/endDateSelect"
             android:clickable="true"
             android:textColor="@color/colorAccent"
             android:textStyle="italic"
-            android:onClick="endClick"
             android:layout_below="@+id/endDateLabel"
             android:layout_alignStart="@+id/startDateSelect" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePickerBox"
+        android:background="@color/colorPrimary"
+        android:layout_alignTop="@+id/reoccurCheckBox"
+        android:layout_alignStart="@+id/endTimeLabel"
+        android:visibility="invisible">
+
+        <DatePicker
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/startDatePicker"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            android:visibility="invisible"/>
+
+        <DatePicker
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/endDatePicker"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            android:visibility="invisible"/>
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateCancelButton"
+            android:layout_below="@+id/datePicker"
+            android:layout_alignStart="@+id/datePicker"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:text="Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateSaveButton"
+            android:layout_alignBaseline="@+id/dateCancelButton"
+            android:layout_alignBottom="@+id/dateCancelButton"
+            android:layout_alignEnd="@+id/datePicker"
+            android:textColor="@color/colorPrimary" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePickerBox"
+        android:background="@color/colorPrimary"
+        android:layout_alignTop="@+id/reoccurCheckBox"
+        android:layout_alignStart="@+id/endTimeLabel"
+        android:visibility="invisible">
+
+        <TimePicker
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/startTimePicker"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:timePickerMode="spinner"
+            android:visibility="invisible"/>
+
+        <TimePicker
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/endTimePicker"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:timePickerMode="spinner"
+            android:visibility="invisible"/>
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeCancelButton"
+            android:layout_below="@+id/startTimePicker"
+            android:layout_alignStart="@+id/startTimePicker"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:text="Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeSaveButton"
+            android:layout_alignBaseline="@+id/timeCancelButton"
+            android:layout_alignBottom="@+id/timeCancelButton"
+            android:layout_alignEnd="@+id/startTimePicker"
+            android:textColor="@color/colorPrimary" />
     </RelativeLayout>
 
 </RelativeLayout>
