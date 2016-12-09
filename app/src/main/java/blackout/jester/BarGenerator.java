@@ -65,8 +65,13 @@ public class BarGenerator {
 
         barPumpHaus.addDeal("Peppermint Patty Shots", new BigDecimal(2.00), DealType.SHOTS, "Today");
         barPumpHaus.addDeal("Domestic Drafts", new BigDecimal(1.50), DealType.BEER, "Today");
+        barPumpHaus.addDeal("Free Water", new BigDecimal(0.00), DealType.OTHER, "Everyday");
+
 
         barPumpHaus.addEvent("Daniel Tosh Stand up", "8:00pm-8:30pm", "19th Dec.", EventType.COMEDY, new BigDecimal(15.00));
+        barPumpHaus.addEvent("Dane Cook Stand up", "8:45pm-9:00pm", "19th Dec.", EventType.COMEDY, new BigDecimal(15.01));
+        barPumpHaus.addEvent("Dogfishhead Tap Takeover", "open-close", "20th Dec.", EventType.OTHER, new BigDecimal(0.00));
+
 
 
         // Little Bigs //
@@ -80,6 +85,8 @@ public class BarGenerator {
         barLittleBigs.addDeal("Import Bottles", new BigDecimal(1.50), DealType.BEER, "Today");
 
         barLittleBigs.addEvent("Trivia Night", "8:00pm-10:00pm", "21th Dec.", EventType.OTHER, new BigDecimal(0.00));
+        barLittleBigs.addEvent("We're New, Check us out!", "open-close", "10th Dec.", EventType.OTHER, new BigDecimal(0.00));
+        barLittleBigs.addEvent("Fat Guy in a Red Coat", "8:00pm-11:00pm", "24th Dec.", EventType.LIVEMUSIC, new BigDecimal(5.00));
 
 
         // Octopus //
@@ -91,8 +98,11 @@ public class BarGenerator {
 
         barOctopus.addDeal("Free Popcorn", new BigDecimal(0.00), DealType.OTHER, "Today");
         barOctopus.addDeal("PBR Drafts", new BigDecimal(1.00), DealType.BEER, "Today");
+        barOctopus.addDeal("Moscow Monday", new BigDecimal(5.50), DealType.MIXEDDRINK, "Monday");
 
         barOctopus.addEvent("Stand Up Comedy", "8:00pm-11:00pm", "29th Dec.", EventType.COMEDY, new BigDecimal(0.00));
+        barOctopus.addEvent("Christmas Vinyl", "8:00pm-11:00pm", "23rd Dec.", EventType.LIVEMUSIC, new BigDecimal(0.00));
+        barOctopus.addEvent("Kristmas Karaoke", "8:00pm-11:00pm", "24th Dec.", EventType.KARAOKE, new BigDecimal(0.00));
 
 
         // Single Speed //
@@ -101,12 +111,22 @@ public class BarGenerator {
                             "singlespeed_logo",
                             "singlespeed_profile"
                 );
+        barSingleSpeed.setDisatnceMiles(5);
+        barSingleSpeed.setAddress("128 Main St, Cedar Falls, IA");
+        barSingleSpeed.setHours("Monday - Thursday: 4PM - 12AM" +
+                                "Friday: 4PM - 2AM" +
+                                "Saturday: 12PM - 2AM" +
+                                "Sunday: 12pm - 10pm");
         // * Adding Deals
         barSingleSpeed.addDeal(
                 "Craft Beer Flights", new BigDecimal(5.00), DealType.BEER, "Saturday");
         barSingleSpeed.addDeal(
                 "Seasonal Craft Beer", new BigDecimal(6.50), DealType.BEER, "Friday");
-
+        barSingleSpeed.addDeal("Weekly Small Batch", new BigDecimal(6.50), DealType.BEER, "Wednesday");
+        // * Adding Events
+        barSingleSpeed.addEvent("Main Street Fundraiser", "open - cloase", "10th Dec.", EventType.OTHER, new BigDecimal(0.00));
+        barSingleSpeed.addEvent("Winter Small Batch Tap", "6:00pm", "9th Dec.", EventType.OTHER, new BigDecimal(5.50));
+        barSingleSpeed.addEvent("Santa's Winter Warmer", "6:00pm", "24th Dec.", EventType.OTHER, new BigDecimal(5.50));
 
         // Toads Bar and Grill //
         BarData barToads =
@@ -114,9 +134,17 @@ public class BarGenerator {
                             "toads_logo",
                             "toads_profile"
                 );
+        barToads.setDisatnceMiles(5);
+        barToads.setAddress("204 E Main St, Cedar Falls, IA ");
+        barToads.setHours("Sunday - Saturday: 10AM - 2AM");
         // * Adding Deals
         barToads.addDeal(
                 "Whiskey Shots", new BigDecimal(3.00), DealType.MIXEDDRINK, "Saturday");
+        barToads.addDeal("Beer must Go", new BigDecimal(1.00), DealType.BEER, "Friday");
+        barToads.addDeal("Whatevers Left", new BigDecimal(0.25), DealType.SHOTS, "Friday");
+        // * Adding Events
+        barToads.addEvent("Closing Shop", "open-close", "9th Dec.", EventType.OTHER, new BigDecimal(0.00));
+        barToads.addEvent("Sell it All", "open-close", "8th Dec.", EventType.OTHER, new BigDecimal(0.00));
 
         // Screaming Eagle //
         BarData barScreamingEagle =
@@ -124,9 +152,19 @@ public class BarGenerator {
                             "screaming_eagle_logo",
                             "screaming_eagle_profile"
                 );
+        barScreamingEagle.setDisatnceMiles(8);
+        barScreamingEagle.setAddress("228 E 4th St, Waterloo, IA");
+        barScreamingEagle.setHours("Sunday - Saturday: 10AM - 2AM");
+        barScreamingEagle.setContactInfo("(319) 235-8865");
         // * Adding Deals
         barScreamingEagle.addDeal(
                 "Whiskey Shots", new BigDecimal(3.00), DealType.MIXEDDRINK, "Saturday");
+        barScreamingEagle.addDeal("Busch Lite Tall Boys", new BigDecimal(2.50), DealType.BEER, "Sunday");
+        barScreamingEagle.addDeal("2-4-1 Drinks", new BigDecimal(0.00), DealType.OTHER, "Tuesday");
+        //*Adding Events
+        barScreamingEagle.addEvent("Never The Less", "8:00pm-12:00pm", "24th Dec.", EventType.LIVEMUSIC, new BigDecimal(5.00));
+        barScreamingEagle.addEvent("WAGGLess", "8:00pm-12:00pm", "31st Dec.", EventType.LIVEMUSIC, new BigDecimal(0.00));
+        barScreamingEagle.addEvent("Jester Demo", "7:00pm-8:00pm", "32nd Dec.", EventType.OTHER, new BigDecimal(0.00));
 
 
         // !!! Add your bars to the barList !!! //
