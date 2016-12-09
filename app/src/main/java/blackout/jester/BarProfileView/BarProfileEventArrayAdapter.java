@@ -1,7 +1,6 @@
 package blackout.jester.BarProfileView;
 
 import android.app.Activity;
-import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.EventsTab.EventListItem;
 import blackout.jester.R;
 
@@ -44,7 +42,7 @@ public class BarProfileEventArrayAdapter extends ArrayAdapter<EventListItem> {
         View view = inflater.inflate(R.layout.profile_event_list_item, null);
 
         //display event text... may need to trim this up.
-        TextView dealText = (TextView) view.findViewById(R.id.event_text);
+        TextView dealText = (TextView) view.findViewById(R.id.event_description_text);
         dealText.setText(eventListItem.getProfileEventText());
 
         return view;

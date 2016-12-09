@@ -58,16 +58,23 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    android:id="@+id/profile_info_text"
+                                <ScrollView
+                                    android:id="@+id/profile_info_text_scroll_view"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:paddingTop="5dp"
-                                    android:paddingStart="10dp"
-                                    android:paddingEnd="5dp"
-                                    android:textSize="20sp"
-                                    android:textColor="@color/black"
-                                    android:background="@color/white"/>
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:id="@+id/profile_info_text"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:paddingTop="5dp"
+                                        android:paddingStart="10dp"
+                                        android:paddingEnd="5dp"
+                                        android:textSize="20sp"
+                                        android:textColor="@color/black"
+                                        android:background="@color/white"/>
+
+                                </ScrollView>
 
                             </LinearLayout>
 

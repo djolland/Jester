@@ -41,11 +41,15 @@ public class EventArrayAdapter extends ArrayAdapter<EventListItem> {
                 (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.event_item_layout, null);
 
-        TextView eventText = (TextView) view.findViewById(R.id.event_text);
+        TextView eventDescriptionText = (TextView) view.findViewById(R.id.event_description_text);
+        TextView eventTimeText = (TextView) view.findViewById(R.id.event_date_text);
+        TextView eventCoverText = (TextView) view.findViewById(R.id.event_cover_text);
         ImageView barImage = (ImageView) view.findViewById(R.id.bar_image);
 
         //display event text... may need to trim this up.
-        eventText.setText(eventListItem.getEventTabText());
+        eventDescriptionText.setText(eventListItem.getEventTabDescriptionText());
+        eventTimeText.setText(eventListItem.getEventTabTimeText());
+        eventCoverText.setText(eventListItem.getEventTabCoverText());
 
         //Getting image resource
         int imageID = context.getResources()

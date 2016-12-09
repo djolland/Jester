@@ -53,8 +53,8 @@ public class BarGenerator {
         BarData barBlankBar = new BarData("Blank Bar");
         // * Adding Deals
         barBlankBar.addDeal("Free Beer!", new BigDecimal(0.00), DealType.BEER, "Today");
+        barBlankBar.addEvent("Karaoke", "12:00am - 1:00pm", "25th Dec.", EventType.KARAOKE, new BigDecimal(10.00));
 
-        barBlankBar.addEvent("Karaoke", "12:00am-1:00pm", "25th Dec.", EventType.KARAOKE, new BigDecimal(10.00));
 
         // Pump House //
         BarData barPumpHaus = new BarData("Pump Haus", "pump_haus_logo", "pump_haus_profile");
@@ -62,16 +62,14 @@ public class BarGenerator {
         barPumpHaus.setAddress("311 Main St, Cedar Falls, IA");
         barPumpHaus.setHours("Sunday - Saturday: 11AM - 2AM");
         barPumpHaus.setContactInfo("(319) 277 -8111");
-
+        // * Adding Deals
         barPumpHaus.addDeal("Peppermint Patty Shots", new BigDecimal(2.00), DealType.SHOTS, "Today");
         barPumpHaus.addDeal("Domestic Drafts", new BigDecimal(1.50), DealType.BEER, "Today");
         barPumpHaus.addDeal("Free Water", new BigDecimal(0.00), DealType.OTHER, "Everyday");
-
-
-        barPumpHaus.addEvent("Daniel Tosh Stand up", "8:00pm-8:30pm", "19th Dec.", EventType.COMEDY, new BigDecimal(15.00));
-        barPumpHaus.addEvent("Dane Cook Stand up", "8:45pm-9:00pm", "19th Dec.", EventType.COMEDY, new BigDecimal(15.01));
-        barPumpHaus.addEvent("Dogfishhead Tap Takeover", "open-close", "20th Dec.", EventType.OTHER, new BigDecimal(0.00));
-
+        // * Adding Events
+        barPumpHaus.addEvent("Daniel Tosh Stand up", "8:00pm - 8:30pm", "19th Dec.", EventType.COMEDY, new BigDecimal(15.00));
+        barPumpHaus.addEvent("Dane Cook Stand up", "8:45pm - 9:00pm", "19th Dec.", EventType.COMEDY, new BigDecimal(15.00));
+        barPumpHaus.addEvent("Dogfishhead Tap Takeover", "Open - Close", "20th Dec.", EventType.OTHER, new BigDecimal(0.00));
 
 
         // Little Bigs //
@@ -80,13 +78,13 @@ public class BarGenerator {
         barLittleBigs.setAddress("2210 College St, Cedar Falls, IA");
         barLittleBigs.setHours("Sunday - Saturday: 11AM - 2AM");
         barLittleBigs.setContactInfo("(319) 277 -8111");
-
+        // * Adding Deals
         barLittleBigs.addDeal("The Little Big", new BigDecimal(3.00), DealType.MIXEDDRINK, "Today");
         barLittleBigs.addDeal("Import Bottles", new BigDecimal(1.50), DealType.BEER, "Today");
-
-        barLittleBigs.addEvent("Trivia Night", "8:00pm-10:00pm", "21th Dec.", EventType.OTHER, new BigDecimal(0.00));
-        barLittleBigs.addEvent("We're New, Check us out!", "open-close", "10th Dec.", EventType.OTHER, new BigDecimal(0.00));
-        barLittleBigs.addEvent("Fat Guy in a Red Coat", "8:00pm-11:00pm", "24th Dec.", EventType.LIVEMUSIC, new BigDecimal(5.00));
+        // * Adding Events
+        barLittleBigs.addEvent("Trivia Night", "8:00pm - 10:00pm", "21th Dec.", EventType.OTHER, new BigDecimal(0.00));
+        barLittleBigs.addEvent("We're New, Check us out!", "Open - Close", "10th Dec.", EventType.OTHER, new BigDecimal(0.00));
+        barLittleBigs.addEvent("Fat Guy in a Red Coat", "8:00pm - 11:00pm", "24th Dec.", EventType.LIVEMUSIC, new BigDecimal(5.00));
 
 
         // Octopus //
@@ -95,28 +93,28 @@ public class BarGenerator {
         barOctopus.setAddress("2304 College St, Cedar Falls, IA");
         barOctopus.setHours("Sunday - Saturday: 11AM - 2AM");
         barOctopus.setContactInfo("(319) 273 -6228");
-
+        // * Adding Deals
         barOctopus.addDeal("Free Popcorn", new BigDecimal(0.00), DealType.OTHER, "Today");
         barOctopus.addDeal("PBR Drafts", new BigDecimal(1.00), DealType.BEER, "Today");
         barOctopus.addDeal("Moscow Monday", new BigDecimal(5.50), DealType.MIXEDDRINK, "Monday");
-
-        barOctopus.addEvent("Stand Up Comedy", "8:00pm-11:00pm", "29th Dec.", EventType.COMEDY, new BigDecimal(0.00));
-        barOctopus.addEvent("Christmas Vinyl", "8:00pm-11:00pm", "23rd Dec.", EventType.LIVEMUSIC, new BigDecimal(0.00));
-        barOctopus.addEvent("Kristmas Karaoke", "8:00pm-11:00pm", "24th Dec.", EventType.KARAOKE, new BigDecimal(0.00));
+        // * Adding Events
+        barOctopus.addEvent("Stand Up Comedy", "8:00pm - 11:00pm", "29th Dec.", EventType.COMEDY, new BigDecimal(0.00));
+        barOctopus.addEvent("Christmas Vinyl", "8:00pm - 11:00pm", "23rd Dec.", EventType.LIVEMUSIC, new BigDecimal(0.00));
+        barOctopus.addEvent("Kristmas Karaoke", "8:00pm - 11:00pm", "24th Dec.", EventType.KARAOKE, new BigDecimal(0.00));
 
 
         // Single Speed //
         BarData barSingleSpeed =
                 new BarData("Single Speed",
                             "singlespeed_logo",
-                            "singlespeed_profile"
-                );
+                            "singlespeed_profile");
         barSingleSpeed.setDisatnceMiles(5);
         barSingleSpeed.setAddress("128 Main St, Cedar Falls, IA");
         barSingleSpeed.setHours("Monday - Thursday: 4PM - 12AM" +
                                 "Friday: 4PM - 2AM" +
                                 "Saturday: 12PM - 2AM" +
                                 "Sunday: 12pm - 10pm");
+        barSingleSpeed.setContactInfo("marketing@singlespeedbrewing.com");
         // * Adding Deals
         barSingleSpeed.addDeal(
                 "Craft Beer Flights", new BigDecimal(5.00), DealType.BEER, "Saturday");
@@ -124,16 +122,12 @@ public class BarGenerator {
                 "Seasonal Craft Beer", new BigDecimal(6.50), DealType.BEER, "Friday");
         barSingleSpeed.addDeal("Weekly Small Batch", new BigDecimal(6.50), DealType.BEER, "Wednesday");
         // * Adding Events
-        barSingleSpeed.addEvent("Main Street Fundraiser", "open - cloase", "10th Dec.", EventType.OTHER, new BigDecimal(0.00));
+        barSingleSpeed.addEvent("Main Street Fundraiser", "Open - Close", "10th Dec.", EventType.OTHER, new BigDecimal(0.00));
         barSingleSpeed.addEvent("Winter Small Batch Tap", "6:00pm", "9th Dec.", EventType.OTHER, new BigDecimal(5.50));
         barSingleSpeed.addEvent("Santa's Winter Warmer", "6:00pm", "24th Dec.", EventType.OTHER, new BigDecimal(5.50));
 
         // Toads Bar and Grill //
-        BarData barToads =
-                new BarData("Toads",
-                            "toads_logo",
-                            "toads_profile"
-                );
+        BarData barToads = new BarData("Toads", "toads_logo", "toads_profile");
         barToads.setDisatnceMiles(5);
         barToads.setAddress("204 E Main St, Cedar Falls, IA ");
         barToads.setHours("Sunday - Saturday: 10AM - 2AM");

@@ -3,9 +3,10 @@ package blackout.jester.EventsTab;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.math.BigDecimal;
+
 import blackout.jester.BarData.BarData;
 import blackout.jester.BarData.BarEventData;
-import blackout.jester.BarData.DealType;
 import blackout.jester.BarData.EventType;
 
 /**
@@ -19,7 +20,9 @@ public class EventListItem implements Parcelable, Comparable<EventListItem> {
     private BarData barData;
     private String barImage;
     private String barName;
-    private String eventTabText;
+    private String eventTabDescriptionText;
+    private String eventTabTimeText;
+    private String eventTabCoverText;
     private String profileEventText;
     private EventType eventType;
     private BarEventData eventData;
@@ -32,8 +35,9 @@ public class EventListItem implements Parcelable, Comparable<EventListItem> {
         this.eventType = this.eventData.getEventType();
 
         // Constructing the deal text that will appear in the main Deal Tab List
-        this.eventTabText = this.eventData.getDescription() + " - " + this.eventData.getTime() +
-                "\nCover: $" + this.eventData.getCoverCharge();
+        this.eventTabDescriptionText = this.eventData.getDescription();
+        this.eventTabTimeText = this.eventData.getTime() + ",  " + this.eventData.getDate();
+        this.eventTabCoverText = "Cover:  $" + this.eventData.getCoverCharge().toString();
         // Constructing the deal text that will appear in the Deal Tab list in the
         // Bar Profile page.
         this.profileEventText = this.eventData.getDescription() + " - $" + this.eventData.getCoverCharge().toString();
@@ -43,20 +47,25 @@ public class EventListItem implements Parcelable, Comparable<EventListItem> {
     public BarData getBarData(){return barData;};
     public String getBarImage(){return barImage;}
     public String getBarName(){return barName;}
-    public String getEventTabText(){return eventTabText;}
+    public String getEventTabDescriptionText(){return eventTabDescriptionText;}
+    public String getEventTabTimeText(){return eventTabTimeText;}
+    public String getEventTabCoverText(){return eventTabCoverText;}
     public String getProfileEventText(){return profileEventText;}
     public EventType getEventType() {return eventType;}
     public BarEventData getEventData(){return eventData;}
+
     // Parceling data
     private EventListItem(Parcel in) {
-        String[] data = new String[4];
+        String[] data = new String[6];
 
         in.readParcelable(this.barData.getClass().getClassLoader());
         in.readStringArray(data);
         this.barImage = data[0];
         this.barName = data[1];
-        this.eventTabText = data[2];
-        this.profileEventText = data[3];
+        this.eventTabDescriptionText = data[2];
+        this.eventTabTimeText = data[3];
+        this.eventTabCoverText = data[4];
+        this.profileEventText = data[5];
         this.eventType = EventType.valueOf(in.readString());
     }
 
@@ -69,7 +78,9 @@ public class EventListItem implements Parcelable, Comparable<EventListItem> {
         out.writeStringArray(new String[] {
                 this.barImage,
                 this.barName,
-                this.eventTabText,
+                this.eventTabDescriptionText,
+                this.eventTabTimeText,
+                this.eventTabCoverText,
                 this.profileEventText});
         out.writeString(eventType.name());
     }
