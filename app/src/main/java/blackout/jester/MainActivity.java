@@ -32,6 +32,7 @@ import java.util.Collections;
 import blackout.jester.BarData.BarData;
 import blackout.jester.BarData.DealType;
 import blackout.jester.BarData.EventType;
+import blackout.jester.CalendarTab.CalendarFragment;
 import blackout.jester.DealsTab.DealListItem;
 import blackout.jester.DealsTab.DealsFragment;
 import blackout.jester.EventsTab.EventListItem;
@@ -96,13 +97,33 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mTitle = mDrawerTitle = getTitle();
         // Set the adapter for the list view
-        ArrayList<DrawerListItem> drawerItems = new ArrayList<>();
+        final ArrayList<DrawerListItem> drawerItems = new ArrayList<>();
         drawerItems.add(new DrawerListItem("ic_patron_drawer","Bar Patron"));
         drawerItems.add(new DrawerListItem("ic_owner_drawer","Bar Owner"));
         mDrawerAdapter = new DrawerArrayAdapter(this, 0, drawerItems);
 
+        final CalendarFragment calendarFragment = new CalendarFragment();
         mDrawerList.setAdapter(mDrawerAdapter);
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                DrawerListItem drawerListItem =
+                        (DrawerListItem) adapterView.getItemAtPosition(position);
+                // this is a bad way of handling this
+                if (drawerListItem.getText().equalsIgnoreCase("bar owner")){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_container, calendarFragment)
+                            .commit();
+                    mBottomBar.hide();
+                }
+                else{
+                    mBottomBar.show();
+                    mBottomBar.selectTabAtPosition(0, false);
+                }
+                mDrawerLayout.closeDrawers();
+            }
+        });
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0){
 
             /** Called when a drawer has settled in a completely closed state. */
@@ -276,8 +297,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMenuTabReSelected(@IdRes int menuItemId) {
                 if (menuItemId == R.id.bb_menu_deals) {
-                    // Do Nothing I guess
-                }
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_container, dealsFragment)
+                            .commit();
+                    // Update filter popup window to deals list
+                    setFilterWindowToDeals();                }
             }
         });
     }

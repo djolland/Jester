@@ -43,4 +43,18 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="barOwnerCalendarStyle" parent="@android:style/Widget.CalendarView">
+        <item name="android:background">@color/lightGrey</item>
+        <item name="android:headerBackground">@color/colorPrimaryDark</item>
+        <item name="android:headerMonthTextAppearance">@color/colorPrimaryDark</item>
+        <item name="android:headerDayOfMonthTextAppearance">@color/colorPrimaryDark</item>
+        <item name="android:focusedMonthDateColor">@color/colorPrimaryLight</item>
+        <item name="android:unfocusedMonthDateColor">@color/colorPrimaryDark</item>
+        <item name="android:weekDayTextAppearance">@color/colorPrimaryDark</item>
+        <item name="android:weekSeparatorLineColor">@color/colorPrimaryDark</item>
+        <item name="android:selectedWeekBackgroundColor">@color/colorAccent</item>
+        <item name="android:showWeekNumber">false</item>
+        <item name="android:listSeparatorTextViewStyle">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

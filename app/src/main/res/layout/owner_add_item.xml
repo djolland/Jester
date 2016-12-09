@@ -2,11 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_item_relative_layout"
+    android:background="@color/white"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
     android:baselineAligned="false">
-
 
     <TextView
         android:text="Add Calendar Item"
@@ -156,13 +161,13 @@
         android:textColor="@color/colorPrimary" />
 
     <RelativeLayout
+        android:id="@+id/reoccurBox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/endTimeLabel"
-        android:layout_alignStart="@+id/endTimeLabel"
-        android:id="@+id/reoccurBox"
+        android:layout_below="@+id/reoccurCheckBox"
+        android:layout_alignStart="@+id/reoccurCheckBox"
         android:visibility="invisible"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         android:layout_above="@+id/cancelButton">
 
         <CheckBox
@@ -283,26 +288,26 @@
             android:layout_marginEnd="11dp" />
 
         <TextView
+            android:id="@+id/startDateSelect"
             android:text="MM/DD/YYYY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/startDateSelect"
             android:clickable="true"
             android:textColor="@color/colorAccent"
             android:textStyle="italic"
-            android:layout_below="@+id/wednesdayCheckBox"
-            android:layout_toEndOf="@+id/startDateLabel" />
+            android:layout_below="@+id/startDateLabel"
+            android:layout_alignStart="@+id/startDateLabel" />
 
         <TextView
+            android:id="@+id/endDateSelect"
             android:text="MM/DD/YYYY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/endDateSelect"
             android:clickable="true"
             android:textColor="@color/colorAccent"
             android:textStyle="italic"
             android:layout_below="@+id/endDateLabel"
-            android:layout_alignStart="@+id/startDateSelect" />
+            android:layout_alignStart="@+id/endDateLabel" />
 
     </RelativeLayout>
 
