@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/deal_description_text"
             android:layout_width="match_parent"
-            android:layout_height="26sp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="20sp"
             android:textColor="@color/black"
@@ -35,15 +35,15 @@
         <TextView
             android:id="@+id/deal_price_text"
             android:layout_width="match_parent"
-            android:layout_height="24sp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:contentDescription="Deal Price Text"/>
 
         <TextView
             android:id="@+id/deal_date_text"
             android:layout_width="match_parent"
-            android:layout_height="20sp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="15sp"
             android:contentDescription="Deal Dates"/>
