@@ -42,7 +42,7 @@ public class BarProfileDealArrayAdapter extends ArrayAdapter<DealListItem> {
         View view = inflater.inflate(R.layout.profile_deal_list_item, null);
 
         //display deal text... may need to trim this up.
-        TextView dealText = (TextView) view.findViewById(R.id.deal_text);
+        TextView dealText = (TextView) view.findViewById(R.id.deal_description_text);
         dealText.setText(dealListItem.getProfileDealText());
 
         return view;

@@ -9,8 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import blackout.jester.R;
 
@@ -41,11 +43,15 @@ public class DealArrayAdapter extends ArrayAdapter<DealListItem> {
                 (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.deal_item_layout, null);
 
-        TextView dealText = (TextView) view.findViewById(R.id.deal_text);
+        TextView dealDescriptionText = (TextView) view.findViewById(R.id.deal_description_text);
+        TextView dealPriceText = (TextView) view.findViewById(R.id.deal_price_text);
+        TextView dealDateText = (TextView) view.findViewById(R.id.deal_date_text);
         ImageView barImage = (ImageView) view.findViewById(R.id.bar_image);
 
         //display deal text... may need to trim this up.
-        dealText.setText(dealListItem.getDealTabText());
+        dealDescriptionText.setText(dealListItem.getDealTabDescriptionText());
+        dealPriceText.setText(dealListItem.getDealTabPriceText());
+        dealDateText.setText(dealListItem.getDealTabDateText());
 
         //Getting image resource
         int imageID = context.getResources()
